@@ -1,15 +1,9 @@
 pipeline {
-    agent {
-             docker {
-                 image 'node:20-alpine'
-                 args '-u root:root'
-             }
-         }
-
+    agent any
     environment {
-        DOCKER_CREDENTIALS = credentials('dockerhub-credentials')
+        PATH = "/usr/local/bin:/opt/homebrew/bin:${env.PATH}"
+        DOCKER_CREDENTIALS = credentials('docker-credentials')
     }
-
     stages {
         stage('Build project...') {
             steps {
