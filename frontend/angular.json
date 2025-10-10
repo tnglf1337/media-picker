@@ -25,7 +25,9 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/theme.css",
+              "node_modules/@blaze/css/dist/blaze/blaze.css"
             ]
           },
           "configurations": {

@@ -1,0 +1,22 @@
+:root {
+  --serien-primary: limegreen;
+  --serien-secondary: rgba(50, 205, 50, 0.1);
+
+  --filme-primary: cadetblue;
+  --filme-secondary: rgba(95, 158, 160, 0.1);
+
+  --anime-primary: lightcoral;
+  --anime-secondary: rgba(240, 128, 128, 0.1);
+
+  --manga-primary: palevioletred;
+  --manga-secondary: rgba(219, 112, 147, 0.1);
+
+  --videospiel-primary: yellowgreen;
+  --videospiel-secondary: rgba(154, 205, 50, 0.1);
+
+  --buecher-primary: peru;
+  --buecher-secondary: rgba(205, 133, 50, 0.1);
+
+  --podcast-primary: cornflowerblue;
+  --podcast-secondary: rgba(100, 149, 237, 0.1);
+}

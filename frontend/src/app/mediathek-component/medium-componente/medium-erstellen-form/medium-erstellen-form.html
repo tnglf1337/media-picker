@@ -1,0 +1,96 @@
+<blaze-modal #mediumFormModul>
+  <blaze-card>
+    <blaze-card-header>
+      <h2 class="c-heading u-xlarge">
+        {{modalHeader}} hinzufügen
+      </h2>
+      <button id="modal-close-btn" class="c-button c-button--close" (click)="closeFormModal()">x</button>
+    </blaze-card-header>
+    <blaze-card-body>
+      <form [formGroup]="mediumForm.getPrimaerForm()">
+        <div class="mb-3">
+          <label for="titel" class="form-label">Titel</label>
+          <input type="text" class="form-control" id="titel" formControlName="titel">
+        </div>
+        <div class="mb-3">
+          <label for="status" class="form-label">Status</label>
+          <select  class="form-control" id="status" formControlName="status">
+            <option *ngFor="let status of statusOptionen">{{status}}</option>
+          </select>
+        </div>
+      </form>
+      <ng-container *ngIf="mediumTyp == MediumTyp.SERIE || mediumTyp == MediumTyp.ANIME">
+        <form [formGroup]="mediumForm.getSekundaerForm()">
+          <div class="mb-3">
+            <label for="season" class="form-label">Staffel</label>
+            <input type="text" class="form-control" id="season" formControlName="season">
+          </div>
+          <div class="mb-3">
+            <label for="folgen" class="form-label">Folgen</label>
+            <input type="text" class="form-control" id="folgen" formControlName="folgen">
+          </div>
+          <div class="mb-3">
+            <label for="current-folge" class="form-label">Aktuelle Folge</label>
+            <input type="text" class="form-control" id="current-folge" formControlName="currentFolge">
+          </div>
+        </form>
+      </ng-container>
+      <ng-container *ngIf="mediumTyp == MediumTyp.MANGA">
+        <form [formGroup]="mediumForm.getSekundaerForm()">
+          <div class="mb-3">
+            <label for="band" class="form-label">Band</label>
+            <input type="text" class="form-control" id="band" formControlName="band">
+          </div>
+          <div class="mb-3">
+            <label for="kapitel" class="form-label">Kapteil</label>
+            <input type="text" class="form-control" id="kapitel" formControlName="kapitel">
+          </div>
+          <div class="mb-3">
+            <label for="current-kapitel" class="form-label">Aktuelles Kapitel</label>
+            <input type="text" class="form-control" id="current-kapitel" formControlName="currentKapitel">
+          </div>
+        </form>
+      </ng-container>
+      <ng-container *ngIf="mediumTyp == MediumTyp.VIDEOSPIEL">
+        <form [formGroup]="mediumForm.getSekundaerForm()">
+          <div class="mb-3">
+            <label for="platform" class="form-label">Platform</label>
+            <select type="text" class="form-control" id="platform" formControlName="platform">
+              <option *ngFor="let platform of platforms">{{platform}}</option>
+            </select>
+          </div>
+        </form>
+      </ng-container>
+      <ng-container *ngIf="mediumTyp == MediumTyp.BUCH">
+        <form [formGroup]="mediumForm.getSekundaerForm()">
+          <div class="mb-3">
+            <label for="seiten" class="form-label">Seiten</label>
+            <input type="text" class="form-control" id="seiten" formControlName="seiten">
+          </div>
+          <div class="mb-3">
+            <label for="current-seite" class="form-label">Aktuelle Seite</label>
+            <input type="text" class="form-control" id="current-seite" formControlName="currentSeite">
+          </div>
+        </form>
+      </ng-container>
+      <ng-container *ngIf="mediumTyp == MediumTyp.PODCAST">
+        <form [formGroup]="mediumForm.getSekundaerForm()">
+          <div class="mb-3">
+            <label for="kapitel" class="form-label">Kapitel</label>
+            <input type="text" class="form-control" id="kapitel" formControlName="kapitel">
+          </div>
+          <div class="mb-3">
+            <label for="current-kapitel" class="form-label">Aktuelles Kapitel</label>
+            <input type="text" class="form-control" id="current-kapitel" formControlName="currentKapitel">
+          </div>
+        </form>
+      </ng-container>
+    </blaze-card-body>
+    <blaze-card-footer>
+      <div class="c-input-group">
+        <button id="medium-erstellen-btn" class="m-btn" type="button" (click)="erstelleMedium()">erstellen</button>
+        <button id="modal-schließen-btn" class="m-btn" type="button" (click)="closeFormModal()">schließen</button>
+      </div>
+    </blaze-card-footer>
+  </blaze-card>
+</blaze-modal>

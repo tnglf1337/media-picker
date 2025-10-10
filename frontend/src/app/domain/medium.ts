@@ -1,5 +1,5 @@
 // ##### ENUMS #####
-export enum MediaTyp {
+export enum MediumTyp {
   SERIE, FILM, ANIME, MANGA, VIDEOSPIEL, BUCH, PODCAST
 }
 export enum Status {
@@ -13,12 +13,12 @@ export enum Status {
   ABGEBROCHEN = "abgebrochen",
 }
 export enum Platform {
-  PLAYSTATION_4= "ps4",
-  PLAYSTATION_5 = "ps5",
-  PLAYSTATION_6 = "ps6",
-  PC = "px",
-  NINTENDO_SWITCH = "ns1",
-  NINTENDO_SWITCH_2 = "ns2"
+  PLAYSTATION_4= "Playstation 4",
+  PLAYSTATION_5 = "Playstation 5",
+  PLAYSTATION_6 = "Playstation 6",
+  PC = "PC",
+  NINTENDO_SWITCH = "Nintendo Switch",
+  NINTENDO_SWITCH_2 = "Nintendo Switch 2",
 }
 
 // ##### KLASSEN #####
@@ -28,7 +28,7 @@ export class Medium {
     private mediathekId : string,
     private erstelltAm : string,
     private titel : string,
-    private mediaType : MediaTyp,
+    private mediumTyp : MediumTyp,
     private status : Status,
     private rating : number,
     private notiz : string[]
@@ -48,7 +48,7 @@ export class Serie extends Medium {
     season : number,
     folgen: number,
     currentFolge : number) {
-    super(mediumId, userId, erstelltAm, titel, MediaTyp.SERIE, status, rating, notiz);
+    super(mediumId, userId, erstelltAm, titel, MediumTyp.SERIE, status, rating, notiz);
   }
 }
 export class Film extends Medium {
@@ -60,7 +60,7 @@ export class Film extends Medium {
     status : Status,
     rating : number,
     notiz : string[],) {
-    super(mediumId, mediathekId, erstelltAm, titel, MediaTyp.FILM, status, rating, notiz);
+    super(mediumId, mediathekId, erstelltAm, titel, MediumTyp.FILM, status, rating, notiz);
   }
 }
 export class Anime extends Medium {
@@ -75,7 +75,7 @@ export class Anime extends Medium {
     season : number,
     folgen: number,
     currentFolge : number) {
-    super(mediumId, mediathekId, erstelltAm, titel, MediaTyp.ANIME, status, rating, notiz);
+    super(mediumId, mediathekId, erstelltAm, titel, MediumTyp.ANIME, status, rating, notiz);
   }
 }
 export class Manga extends Medium {
@@ -90,7 +90,7 @@ export class Manga extends Medium {
     band : number,
     kapitel: number,
     currentKapitel : number) {
-    super(mediumId, mediathekId, erstelltAm, titel, MediaTyp.MANGA, status, rating, notiz);
+    super(mediumId, mediathekId, erstelltAm, titel, MediumTyp.MANGA, status, rating, notiz);
   }
 }
 export class Videospiel extends Medium {
@@ -103,7 +103,7 @@ export class Videospiel extends Medium {
     rating : number,
     notiz : string[],
     platform : Platform) {
-    super(mediumId, mediathekId, erstelltAm, titel, MediaTyp.VIDEOSPIEL, status, rating, notiz);
+    super(mediumId, mediathekId, erstelltAm, titel, MediumTyp.VIDEOSPIEL, status, rating, notiz);
   }
 }
 export class Buch extends Medium {
@@ -117,7 +117,7 @@ export class Buch extends Medium {
     notiz : string[],
     seiten : number,
     currentSeite : number) {
-    super(mediumId, mediathekId, erstelltAm, titel, MediaTyp.BUCH, status, rating, notiz);
+    super(mediumId, mediathekId, erstelltAm, titel, MediumTyp.BUCH, status, rating, notiz);
   }
 }
 export class Podcast extends Medium {
@@ -131,6 +131,6 @@ export class Podcast extends Medium {
     notiz : string[],
     kapitel : number,
     currentKapitel : number) {
-    super(mediumId, mediathekId, erstelltAm, titel, MediaTyp.PODCAST, status, rating, notiz);
+    super(mediumId, mediathekId, erstelltAm, titel, MediumTyp.PODCAST, status, rating, notiz);
   }
 }

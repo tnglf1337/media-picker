@@ -1,0 +1,126 @@
+@import "../theme.css";
+
+.border-r {
+  border: 2px solid red;
+  padding: 2px;
+  margin: 2px;
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  height: 37px;
+  width: 200px;
+  text-align: center;
+  align-content: center;
+  transition: background-color 325ms ease;
+}
+
+#media-navbar {
+  margin-bottom: 20px;
+}
+
+#home-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 2px none rgba(0,0,0,0);
+  border-radius: 7.5px;
+  background-color: rgba(0,0,0,0);
+  transition: background-color 325ms ease, border 325ms ease;
+}
+
+#home-btn:hover {
+  cursor: pointer;
+  border: 2px solid rgba(25, 25, 25, 0.1);
+  background-color: rgba(25, 25, 25, 0.05);
+}
+
+#home-nav-item {
+  width: 50px;
+}
+
+.nav-link {
+  color: #191919;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav-item {
+  border-style: none;
+  border-radius: 7.5px;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+}
+
+a {
+  display: block;
+}
+
+#serien-nav-item {
+  background: var(--serien-secondary)
+}
+
+
+#serien-nav-item:hover {
+  background: var(--serien-primary);
+}
+
+#filme-nav-item {
+  background: var(--filme-secondary);
+}
+
+#filme-nav-item:hover {
+  background: var(--filme-primary);
+}
+
+#anime-nav-item {
+  background: var(--anime-secondary);
+}
+
+#anime-nav-item:hover {
+  background: var(--anime-primary);
+}
+
+#manga-nav-item {
+  background: var(--manga-secondary);
+}
+
+#manga-nav-item:hover {
+  background: var(--manga-primary);
+}
+
+#videospiel-nav-item {
+  background: var(--videospiel-secondary);
+}
+
+#videospiel-nav-item:hover {
+  background: var(--videospiel-primary);
+}
+
+#buecher-nav-item {
+  background: var(--buecher-secondary);
+}
+
+#buecher-nav-item:hover {
+  background: var(--buecher-primary);
+}
+
+#podcast-nav-item {
+  background: var(--podcast-secondary)
+}
+
+#podcast-nav-item:hover {
+  background: var(--podcast-primary);
+}

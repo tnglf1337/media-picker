@@ -1,0 +1,39 @@
+.border-r {
+  border: 2px solid red;
+  padding: 2px;
+  margin: 2px;
+}
+
+#medium-header-section {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+}
+
+#medium-hinzufügen-btn {
+  height: 30px;
+  width: 100px;
+  border-style: none;
+  border-radius: 3px;
+  font-size: 16px;
+  color: white;
+  background-color: #4466e8;
+}
+
+#medium-hinzufügen-btn:hover {
+  background-color: #365bea;
+  cursor: pointer;
+}
+
+.flex-v-align {
+  display: flex;
+  align-items: center;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+h2 {
+  margin: 0;
+}

@@ -1,0 +1,23 @@
+#modal-close-btn:hover {
+  cursor: pointer;
+}
+
+.m-btn {
+  width: 120px;
+  height: 35px;
+  border: 2px none transparent;
+  border-radius: 7.5px;
+}
+
+#modal-schließen-btn {
+  background-color: rgba(0,0,0,0);
+}
+
+#modal-schließen-btn:hover {
+  border: 2px solid black;
+}
+
+#medium-erstellen-btn {
+  color: white;
+  background-color: #14b614;
+}
