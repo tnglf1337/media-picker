@@ -6,6 +6,10 @@ pipeline {
     }
     stages {
         stage('Build project...') {
+            when {
+                changeset "frontend/**"
+            }
+
             steps {
                 dir('frontend') {
                     sh 'npm install'
@@ -15,6 +19,9 @@ pipeline {
         }
 
         stage('Build Docker Image...') {
+            when {
+                changeset "frontend/**"
+            }
             steps {
                 dir('frontend') {
                     sh "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
