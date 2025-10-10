@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         PATH = "/usr/local/bin:/opt/homebrew/bin:${env.PATH}"
-        DOCKER_CREDENTIALS = credentials('docker-credentials')
+        DOCKER_CREDENTIALS = credentials('dockerhub-credentials')
     }
     stages {
         stage('Build project...') {
