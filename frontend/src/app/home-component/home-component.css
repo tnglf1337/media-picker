@@ -36,6 +36,26 @@
   color: black;
 }
 
+#akzeptieren-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  vertical-align: center;
+
+  color: white;
+  background-color: #41cf22;
+  border: 2px solid rgb(37, 197, 0);
+  border-radius: 5px;
+}
+
+#gewaehltes-medium-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: bold;
+}
+
 @media (max-width: 800px) {
   #uebersicht-container {
     flex-direction: column;
