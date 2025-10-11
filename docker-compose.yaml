@@ -1,0 +1,7 @@
+version: '3.9'
+
+services:
+  media-picker-frontend:
+    image: tneskedev/media-picker:latest
+    ports:
+    - '4201:80'
