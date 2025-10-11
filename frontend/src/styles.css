@@ -6,3 +6,8 @@ html {
 body {
   margin: 40px 40px 40px 40px !important;
 }
+
+p {
+  margin: 0;
+  word-break: break-all;
+}

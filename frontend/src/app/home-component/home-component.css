@@ -4,8 +4,44 @@
   margin: 2px;
 }
 
-#uebersicht-container {
-
+.border-b {
+  border: 2px solid blue;
+  padding: 2px;
+  margin: 2px;
 }
 
-#statistiken-container {}
+#uebersicht-container {
+  display: flex;
+}
+
+#aktuelle-medien-container {
+  width: 25%;
+  min-width: 25%;
+}
+
+#uebersicht-content-container {
+  min-width: 75%;
+}
+
+#next-container {
+  display: flex;
+  gap: 10px;
+}
+
+#next-media-btn {
+  height: 60px;
+  background-color: whitesmoke;
+  border: 2px solid #32a3ff;
+  border-radius: 5px;
+  color: black;
+}
+
+@media (max-width: 800px) {
+  #uebersicht-container {
+    flex-direction: column;
+  }
+
+  #aktuelle-medien-container {
+    min-width: 100%;
+  }
+}
