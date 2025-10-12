@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  medium-database:
+    image: postgres:latest
+    container_name: medium-database
+    environment:
+      POSTGRES_DB: "medium"
+      POSTGRES_USER: "test"
+      POSTGRES_PASSWORD: "1234"
+    ports:
+      - "5957:5432"
+    volumes:
+      - medium-data:/var/lib/postgresql/data
+volumes:
+  medium-data:
