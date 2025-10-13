@@ -63,13 +63,15 @@ export class MediumFormular {
     this.sekundärForm.reset()
   }
 
-  buildMediumTypEntity() : Medium {
-    let medium : Medium = {} as Serie | Film | Anime | Manga | Videospiel | Buch | Podcast;
+  buildMediumTypEntity(): Serie | Film | Anime | Manga | Videospiel | Buch | Podcast {
+    let medium!: Serie | Film | Anime | Manga | Videospiel | Buch | Podcast;
+
     const erstelltAm = new Date().toISOString()
 
     if(this.mediumTyp == MediumTyp.SERIE) {
-      medium = new Serie(
-        uuid(),
+      this.printForm()
+      medium =  new Serie(
+        null,
         erstelltAm,
         this.primärForm.get("titel")?.value,
         this.primärForm.get("status")?.value,
@@ -81,7 +83,7 @@ export class MediumFormular {
       )
     } else if(this.mediumTyp == MediumTyp.FILM) {
       medium = new Film(
-        uuid(),
+        null,
         erstelltAm,
         this.primärForm.get("titel")?.value,
         this.primärForm.get("status")?.value,
@@ -90,7 +92,7 @@ export class MediumFormular {
       )
     } else if(this.mediumTyp == MediumTyp.ANIME) {
       medium = new Anime(
-        uuid(),
+        null,
         erstelltAm,
         this.primärForm.get("titel")?.value,
         this.primärForm.get("status")?.value,
@@ -102,7 +104,7 @@ export class MediumFormular {
       )
     } else if(this.mediumTyp == MediumTyp.MANGA) {
       medium = new Manga(
-        uuid(),
+        null,
         erstelltAm,
         this.primärForm.get("titel")?.value,
         this.primärForm.get("status")?.value,
@@ -114,7 +116,7 @@ export class MediumFormular {
       )
     } else if(this.mediumTyp == MediumTyp.VIDEOSPIEL) {
       medium = new Videospiel(
-        uuid(),
+        null,
         erstelltAm,
         this.primärForm.get("titel")?.value,
         this.primärForm.get("status")?.value,
@@ -124,7 +126,7 @@ export class MediumFormular {
       )
     } else if(this.mediumTyp == MediumTyp.BUCH) {
       medium = new Buch(
-        uuid(),
+        null,
         erstelltAm,
         this.primärForm.get("titel")?.value,
         this.primärForm.get("status")?.value,
@@ -135,7 +137,7 @@ export class MediumFormular {
       )
     } else if(this.mediumTyp == MediumTyp.PODCAST) {
       medium = new Podcast(
-        uuid(),
+        null,
         erstelltAm,
         this.primärForm.get("titel")?.value,
         this.primärForm.get("status")?.value,
@@ -144,6 +146,7 @@ export class MediumFormular {
         this.sekundärForm.get("kapitel")?.value,
         this.sekundärForm.get("currentKapitel")?.value
       )
+      return medium;
     }
 
     return medium;
