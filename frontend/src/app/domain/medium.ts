@@ -25,7 +25,6 @@ export enum Platform {
 export class Medium {
   constructor(
     private mediumId : string,
-    private mediathekId : string,
     private erstelltAm : string,
     private titel : string,
     private mediumTyp : MediumTyp,
@@ -39,7 +38,6 @@ export class Medium {
 export class Serie extends Medium {
   constructor(
     mediumId : string,
-    userId : string,
     erstelltAm : string,
     titel : string,
     status : Status,
@@ -48,25 +46,23 @@ export class Serie extends Medium {
     season : number,
     folgen: number,
     currentFolge : number) {
-    super(mediumId, userId, erstelltAm, titel, MediumTyp.SERIE, status, rating, notiz);
+    super(mediumId, erstelltAm, titel, MediumTyp.SERIE, status, rating, notiz);
   }
 }
 export class Film extends Medium {
   constructor(
     mediumId : string,
-    mediathekId : string,
     erstelltAm : string,
     titel : string,
     status : Status,
     rating : number,
     notiz : string[],) {
-    super(mediumId, mediathekId, erstelltAm, titel, MediumTyp.FILM, status, rating, notiz);
+    super(mediumId, erstelltAm, titel, MediumTyp.FILM, status, rating, notiz);
   }
 }
 export class Anime extends Medium {
   constructor(
     mediumId : string,
-    mediathekId : string,
     erstelltAm : string,
     titel : string,
     status : Status,
@@ -75,13 +71,12 @@ export class Anime extends Medium {
     season : number,
     folgen: number,
     currentFolge : number) {
-    super(mediumId, mediathekId, erstelltAm, titel, MediumTyp.ANIME, status, rating, notiz);
+    super(mediumId, erstelltAm, titel, MediumTyp.ANIME, status, rating, notiz);
   }
 }
 export class Manga extends Medium {
   constructor(
     mediumId : string,
-    mediathekId : string,
     erstelltAm : string,
     titel : string,
     status : Status,
@@ -90,26 +85,24 @@ export class Manga extends Medium {
     band : number,
     kapitel: number,
     currentKapitel : number) {
-    super(mediumId, mediathekId, erstelltAm, titel, MediumTyp.MANGA, status, rating, notiz);
+    super(mediumId, erstelltAm, titel, MediumTyp.MANGA, status, rating, notiz);
   }
 }
 export class Videospiel extends Medium {
   constructor(
     mediumId : string,
-    mediathekId : string,
     erstelltAm : string,
     titel : string,
     status : Status,
     rating : number,
     notiz : string[],
     platform : Platform) {
-    super(mediumId, mediathekId, erstelltAm, titel, MediumTyp.VIDEOSPIEL, status, rating, notiz);
+    super(mediumId, erstelltAm, titel, MediumTyp.VIDEOSPIEL, status, rating, notiz);
   }
 }
 export class Buch extends Medium {
   constructor(
     mediumId : string,
-    mediathekId : string,
     erstelltAm : string,
     titel : string,
     status : Status,
@@ -117,13 +110,12 @@ export class Buch extends Medium {
     notiz : string[],
     seiten : number,
     currentSeite : number) {
-    super(mediumId, mediathekId, erstelltAm, titel, MediumTyp.BUCH, status, rating, notiz);
+    super(mediumId, erstelltAm, titel, MediumTyp.BUCH, status, rating, notiz);
   }
 }
 export class Podcast extends Medium {
   constructor(
     mediumId : string,
-    mediathekId : string,
     erstelltAm : string,
     titel : string,
     status : Status,
@@ -131,6 +123,6 @@ export class Podcast extends Medium {
     notiz : string[],
     kapitel : number,
     currentKapitel : number) {
-    super(mediumId, mediathekId, erstelltAm, titel, MediumTyp.PODCAST, status, rating, notiz);
+    super(mediumId, erstelltAm, titel, MediumTyp.PODCAST, status, rating, notiz);
   }
 }

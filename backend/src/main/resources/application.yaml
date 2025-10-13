@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: media-picker-backend
+  datasource:
+    url: jdbc:postgresql://localhost:5957/medium
+    username: "test"
+    password: "1234"
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop # löscht alles bei Neustart, später auf update ändern
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        show_sql: true
+server:
+  port: 9756
