@@ -5,11 +5,11 @@ import com.mediapicker.domain.mediathek.Mediathek;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MediumService {
+public class MediathekService {
 
   private final MediathekDao mediathekDao;
 
-  public MediumService(MediathekDao mediathekDao) {
+  public MediathekService(MediathekDao mediathekDao) {
     this.mediathekDao = mediathekDao;
   }
 
