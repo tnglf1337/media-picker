@@ -2,15 +2,20 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Anime, Buch, Film, Manga, Medium, Podcast, Serie, Videospiel} from '../domain/medium';
+import {Mediathek} from '../domain/mediathek';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MediumApiService {
-
+  BASE_URL = "http://localhost:9756"
   BASE_URL_ERSTELLEN = "http://localhost:9756/medium-erstellen"
 
   constructor(private http: HttpClient) { }
+
+  getMediathek() : Observable<Mediathek> {
+    return this.http.get<Mediathek>(this.BASE_URL + '/user-medien')
+  }
 
   postSerie(medium : Serie) : Observable<any> {
     console.log("posting new medium: ", medium);
