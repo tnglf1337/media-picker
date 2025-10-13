@@ -1,19 +1,21 @@
 package com.mediapicker.web;
 
+import com.mediapicker.service.MediathekService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class MediumController {
 
-  @GetMapping("/user-medien")
-  public ResponseEntity<Void> getUserMedium() {
-    // TODO implement
-    return null;
+  private MediathekService mediathekService;
+
+  public MediumController(MediathekService mediathekService) {
+    this.mediathekService = mediathekService;
   }
 
-  @PostMapping("/medium-erstellen")
-  public ResponseEntity<Void> mediuErstellen() {
+  @GetMapping("/user-medien")
+  public ResponseEntity<Void> getUserMedium() {
     // TODO implement
     return null;
   }
