@@ -63,14 +63,13 @@ export class MediumFormular {
     this.sekundärForm.reset()
   }
 
-  buildMediumTypEntity(mediathekId : string) : Medium {
+  buildMediumTypEntity() : Medium {
     let medium : Medium = {} as Serie | Film | Anime | Manga | Videospiel | Buch | Podcast;
     const erstelltAm = new Date().toISOString()
 
     if(this.mediumTyp == MediumTyp.SERIE) {
       medium = new Serie(
         uuid(),
-        mediathekId,
         erstelltAm,
         this.primärForm.get("titel")?.value,
         this.primärForm.get("status")?.value,
@@ -83,7 +82,6 @@ export class MediumFormular {
     } else if(this.mediumTyp == MediumTyp.FILM) {
       medium = new Film(
         uuid(),
-        mediathekId,
         erstelltAm,
         this.primärForm.get("titel")?.value,
         this.primärForm.get("status")?.value,
@@ -93,7 +91,6 @@ export class MediumFormular {
     } else if(this.mediumTyp == MediumTyp.ANIME) {
       medium = new Anime(
         uuid(),
-        mediathekId,
         erstelltAm,
         this.primärForm.get("titel")?.value,
         this.primärForm.get("status")?.value,
@@ -106,7 +103,6 @@ export class MediumFormular {
     } else if(this.mediumTyp == MediumTyp.MANGA) {
       medium = new Manga(
         uuid(),
-        mediathekId,
         erstelltAm,
         this.primärForm.get("titel")?.value,
         this.primärForm.get("status")?.value,
@@ -119,7 +115,6 @@ export class MediumFormular {
     } else if(this.mediumTyp == MediumTyp.VIDEOSPIEL) {
       medium = new Videospiel(
         uuid(),
-        mediathekId,
         erstelltAm,
         this.primärForm.get("titel")?.value,
         this.primärForm.get("status")?.value,
@@ -130,7 +125,6 @@ export class MediumFormular {
     } else if(this.mediumTyp == MediumTyp.BUCH) {
       medium = new Buch(
         uuid(),
-        mediathekId,
         erstelltAm,
         this.primärForm.get("titel")?.value,
         this.primärForm.get("status")?.value,
@@ -142,7 +136,6 @@ export class MediumFormular {
     } else if(this.mediumTyp == MediumTyp.PODCAST) {
       medium = new Podcast(
         uuid(),
-        mediathekId,
         erstelltAm,
         this.primärForm.get("titel")?.value,
         this.primärForm.get("status")?.value,

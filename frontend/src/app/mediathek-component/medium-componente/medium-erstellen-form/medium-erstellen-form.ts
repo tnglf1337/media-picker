@@ -120,8 +120,7 @@ export class MediumErstellenForm implements OnChanges {
   protected readonly MediumTyp = MediumTyp;
 
   erstelleMedium() {
-    const mediathekId = "1111" // die muss später hier vom user geholt werden iwi
-    const medium: Medium = this.mediumForm.buildMediumTypEntity(mediathekId);
+    const medium: Medium = this.mediumForm.buildMediumTypEntity();
     console.log("build medium entitiy: ", medium);
     this.apiService.postMedium(medium)
     this.mediumForm.formulareZuruecksetzen()
