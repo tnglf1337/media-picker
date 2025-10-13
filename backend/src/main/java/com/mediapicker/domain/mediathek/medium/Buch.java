@@ -29,6 +29,18 @@ public class Buch extends Medium {
       this.currentSeite = currentSeite;
   }
 
+  public boolean inkrementCurrentSeite() {
+    if(currentSeite + 1 < seiten) {
+      this.currentSeite++;
+      return true;
+    } else if (currentSeite + 1 == seiten) {
+      this.currentSeite++;
+      setBeendetStatus();
+      return true;
+    }
+    return false;
+  }
+
   public Integer getSeiten() {
     return seiten;
   }

@@ -29,6 +29,18 @@ public class Podcast extends Medium {
       this.currentKapitel = currentKapitel;
   }
 
+  public boolean inkrementCurrentKapitel() {
+    if(currentKapitel + 1 < kapitel) {
+      this.currentKapitel++;
+      return true;
+    } else if (currentKapitel + 1 == kapitel) {
+      this.currentKapitel++;
+      setBeendetStatus();
+      return true;
+    }
+    return false;
+  }
+
   public Integer getKapitel() {
     return kapitel;
   }
