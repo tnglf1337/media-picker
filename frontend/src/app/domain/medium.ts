@@ -3,14 +3,14 @@ export enum MediumTyp {
   SERIE, FILM, ANIME, MANGA, VIDEOSPIEL, BUCH, PODCAST
 }
 export enum Status {
-  BEENDET = "beendet",
-  AM_SCHAUEN = "am Schauen",
-  AM_SPIELEN = "am Spielen",
-  AM_LESEN = "am Lesen",
-  AM_HOEREN = "am Hören",
-  GEPLANT = "geplant",
-  PAUSIERT = "pausiert",
-  ABGEBROCHEN = "abgebrochen",
+  BEENDET = "BEENDET",
+  AM_SCHAUEN = "AM_SCHAUEN",
+  AM_SPIELEN = "AM_SPIELEN",
+  AM_LESEN = "AM_LESEN",
+  AM_HOEREN = "AM_HOEREN",
+  GEPLANT = "GEPLANT",
+  PAUSIERT = "PAUSIERT",
+  ABGEBROCHEN = "ABGEBROCHEN",
 }
 export enum Platform {
   PLAYSTATION_4= "Playstation 4",
