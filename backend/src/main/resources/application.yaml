@@ -8,7 +8,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop # löscht alles bei Neustart, später auf update ändern
+      ddl-auto: create-drop # lÃ¶scht alles bei Neustart, spÃ¤ter auf update andern
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
