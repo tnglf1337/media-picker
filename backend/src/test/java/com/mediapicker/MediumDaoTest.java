@@ -6,10 +6,15 @@ import com.mediapicker.domain.mediathek.medium.Film;
 import com.mediapicker.domain.mediathek.medium.Serie;
 import com.mediapicker.domain.mediathek.medium.Status;
 import com.mediapicker.domain.user.User;
+import com.mediapicker.web.OfflineAppRegister;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +27,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 public class MediumDaoTest {
+
+  @TestConfiguration
+  static class MockConfig {
+    @Bean
+    OfflineAppRegister offlineAppRegister() {
+      return Mockito.mock(OfflineAppRegister.class);
+    }
+  }
 
   @Autowired
   private MediathekDao dao;
@@ -115,6 +128,18 @@ public class MediumDaoTest {
     Serie thisSerieAfter = (Serie) fromDbAfter.getMediaListe().get(0);
     assertThat(thisSerieAfter.getNotiz().size()).isEqualTo(notizenAnzahlBefore + 1);
     assertThat(thisSerieAfter.getNotiz()).contains(neueNotiz);
+  }
 
+  @Test
+  @DisplayName("Eine Mediathek wird anhand des User gefunden")
+  void test6() {
+    User user = initTestUser("peter");
+    Mediathek mediathek = initFullMediathek(user);
+    dao.save(mediathek);
+
+    Mediathek found = dao.findByUser(user);
+
+    assertThat(found).isNotNull();
+    assertThat(found.getUser().getUserId()).isEqualTo(user.getUserId());
   }
 }
