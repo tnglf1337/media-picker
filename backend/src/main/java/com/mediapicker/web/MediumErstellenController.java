@@ -1,55 +1,66 @@
 package com.mediapicker.web;
 
-import com.mediapicker.domain.mediathek.medium.Videospiel;
+import com.mediapicker.service.MediathekService;
 import com.mediapicker.web.request.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/medium-erstellen")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MediumErstellenController {
+
+  private final MediathekService mediathekService;
+
+  public MediumErstellenController(MediathekService mediathekService) {
+    this.mediathekService = mediathekService;
+  }
 
   @PostMapping("/serie")
   public ResponseEntity<Void> serieErstellen(@RequestBody SerieRequestDto req) {
-    // TODO implement
+    System.out.println(req.toString());
+    mediathekService.mediumErstellen(req.toEntity());
     return null;
   }
 
   @PostMapping("/film")
   public ResponseEntity<Void> filmErstellen(@RequestBody FilmRequestDto req) {
-    // TODO implement
+    System.out.println(req.toString());
+    mediathekService.mediumErstellen(req.toEntity());
     return null;
   }
 
   @PostMapping("/anime")
   public ResponseEntity<Void> animeErstellen(@RequestBody AnimeRequestDto req) {
-    // TODO implement
+    System.out.println(req.toString());
+    mediathekService.mediumErstellen(req.toEntity());
     return null;
   }
 
   @PostMapping("/manga")
   public ResponseEntity<Void> mangaErstellen(@RequestBody MangaRequestDto req) {
-    // TODO implement
+    System.out.println(req.toString());
+    mediathekService.mediumErstellen(req.toEntity());
     return null;
   }
 
   @PostMapping("/videospiel")
   public ResponseEntity<Void> videospielErstellen(@RequestBody VideospielRequestDto req) {
-    // TODO implement
+    System.out.println(req.toString());
+    mediathekService.mediumErstellen(req.toEntity());
     return null;
   }
 
   @PostMapping("/buch")
   public ResponseEntity<Void> buchErstellen(@RequestBody BuchRequestDto req) {
+    System.out.println(req.toString());
     // TODO implement
     return null;
   }
 
   @PostMapping("/podcast")
   public ResponseEntity<Void> podcastErstellen(@RequestBody PodcastRequestDto req) {
+    System.out.println(req.toString());
     // TODO implement
     return null;
   }
