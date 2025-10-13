@@ -9,12 +9,12 @@ import {
   ViewChild,
   WritableSignal
 } from '@angular/core';
-import {Medium, MediumTyp, Platform, Status} from '../../../domain/medium';
+import {Anime, Buch, Film, Manga, MediumTyp, Platform, Podcast, Serie, Status, Videospiel
+} from '../../../domain/medium';
 import {NgForOf, NgIf} from '@angular/common';
 import {MediumFormular} from '../../../domain/form';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MediumApiService} from '../../../service/api.service';
-import { v4 as uuid } from 'uuid';
 
 interface BlazeModalElement extends HTMLElement {
   show: () => void;
@@ -120,9 +120,24 @@ export class MediumErstellenForm implements OnChanges {
   protected readonly MediumTyp = MediumTyp;
 
   erstelleMedium() {
-    const medium: Medium = this.mediumForm.buildMediumTypEntity();
-    console.log("build medium entitiy: ", medium);
-    this.apiService.postMedium(medium).subscribe({})
+    const medium: Serie | Film | Anime | Manga | Videospiel | Buch | Podcast = this.mediumForm.buildMediumTypEntity();
+
+    if (medium instanceof Serie) {
+      this.apiService.postSerie(medium).subscribe(res => {});
+    } else if (medium instanceof Film) {
+      this.apiService.postFilm(medium).subscribe(res => {});
+    } else if (medium instanceof Anime) {
+      this.apiService.postAnime(medium).subscribe(res => {});
+    } else if (medium instanceof Manga) {
+      this.apiService.postManga(medium).subscribe(res => {});
+    } else if (medium instanceof Videospiel) {
+      this.apiService.postVideospiel(medium).subscribe(res => {});
+    } else if (medium instanceof Buch) {
+      this.apiService.postBuch(medium).subscribe(res => {});
+    } else if (medium instanceof Podcast) {
+      this.apiService.postPodcast(medium).subscribe(res => {});
+    }
+
     this.mediumForm.formulareZuruecksetzen()
   }
 }
