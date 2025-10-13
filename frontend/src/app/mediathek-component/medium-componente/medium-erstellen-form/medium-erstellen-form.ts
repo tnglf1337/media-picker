@@ -122,7 +122,7 @@ export class MediumErstellenForm implements OnChanges {
   erstelleMedium() {
     const medium: Medium = this.mediumForm.buildMediumTypEntity();
     console.log("build medium entitiy: ", medium);
-    this.apiService.postMedium(medium)
+    this.apiService.postMedium(medium).subscribe({})
     this.mediumForm.formulareZuruecksetzen()
   }
 }
