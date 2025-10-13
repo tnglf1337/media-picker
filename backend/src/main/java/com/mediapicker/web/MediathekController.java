@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-public class MediumController {
+public class MediathekController {
 
   private MediathekService mediathekService;
 
-  public MediumController(MediathekService mediathekService) {
+  public MediathekController(MediathekService mediathekService) {
     this.mediathekService = mediathekService;
   }
 
