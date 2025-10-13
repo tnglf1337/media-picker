@@ -23,7 +23,7 @@ public class MediaPickerBackendApplication {
   @Bean
   public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
     return args -> {
-      this.offlineAppRegister.registriereDefaultUser();
+      this.offlineAppRegister.setupApplication();
     };
   }
 
