@@ -92,7 +92,29 @@ public class MediumDaoTest {
     dao.save(fromDbBefore);
     Mediathek fromDbAfter = dao.findById(mediathek.getMediathekId()).orElseThrow();
 
-    Serie thisUpdatedSerie = (Serie) fromDbBefore.getMediaListe().get(0);
+    Serie thisUpdatedSerie = (Serie) fromDbAfter.getMediaListe().get(0);
     assertThat(thisUpdatedSerie.getCurrentFolge()).isEqualTo(initCurrentFolge + 1);
+  }
+
+  @Test
+  @DisplayName("Eine neu hinzugefügte Notiz zu einem Medium wird erfolgreich abgespeichert.")
+  void test5() {
+    String neueNotiz = "noch bewerten";
+    User user = initTestUser("peter");
+    Serie serie = new Serie(null, LocalDateTime.now(), "Breaking Bad", Status.BEENDET, 5, new ArrayList<>(List.of("Notiz 1")), 5, 62, 62);
+    int notizenAnzahlBefore = serie.getNotiz().size();
+    Mediathek mediathek = initMediathekWithMedium(user, serie);
+    dao.save(mediathek);
+
+    Mediathek fromDbBefore = dao.findById(mediathek.getMediathekId()).orElseThrow();
+    Serie thisSerie = (Serie) fromDbBefore.getMediaListe().get(0);
+    thisSerie.notizHinzufuegen(neueNotiz);
+    dao.save(fromDbBefore);
+    Mediathek fromDbAfter = dao.findById(mediathek.getMediathekId()).orElseThrow();
+
+    Serie thisSerieAfter = (Serie) fromDbAfter.getMediaListe().get(0);
+    assertThat(thisSerieAfter.getNotiz().size()).isEqualTo(notizenAnzahlBefore + 1);
+    assertThat(thisSerieAfter.getNotiz()).contains(neueNotiz);
+
   }
 }

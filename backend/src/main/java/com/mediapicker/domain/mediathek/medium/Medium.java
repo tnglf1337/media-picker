@@ -46,6 +46,10 @@ public class Medium {
     this.notiz = notiz;
   }
 
+  public void notizHinzufuegen(String notiz) {
+    this.notiz.add(notiz);
+  }
+
   public UUID getMediumId() {
     return mediumId;
   }
