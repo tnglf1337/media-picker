@@ -1,6 +1,7 @@
 package com.mediapicker.web.request;
 
 import com.mediapicker.domain.mediathek.medium.MediumTyp;
+import com.mediapicker.domain.mediathek.medium.Podcast;
 import com.mediapicker.domain.mediathek.medium.Serie;
 import com.mediapicker.domain.mediathek.medium.Status;
 
@@ -31,6 +32,20 @@ public class SerieRequestDto extends MediumRequestDto{
 
   public SerieRequestDto() {}
 
+  public Serie toEntity() {
+    return new Serie(
+      getMediumId(),
+      getErstelltAm(),
+      getTitel(),
+      getStatus(),
+      getRating(),
+      getNotiz(),
+      season,
+      folgen,
+      currentFolge
+    );
+  }
+
   public Integer getSeason() {
     return season;
   }
@@ -53,5 +68,14 @@ public class SerieRequestDto extends MediumRequestDto{
 
   public void setCurrentFolge(Integer currentFolge) {
     this.currentFolge = currentFolge;
+  }
+
+  @Override
+  public String toString() {
+    return "SerieRequestDto{" +
+      "season=" + season +
+      ", folgen=" + folgen +
+      ", currentFolge=" + currentFolge +
+      '}';
   }
 }

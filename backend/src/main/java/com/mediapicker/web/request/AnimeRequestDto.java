@@ -1,5 +1,7 @@
 package com.mediapicker.web.request;
 
+import com.mediapicker.domain.mediathek.medium.Anime;
+import com.mediapicker.domain.mediathek.medium.Medium;
 import com.mediapicker.domain.mediathek.medium.MediumTyp;
 import com.mediapicker.domain.mediathek.medium.Status;
 
@@ -28,4 +30,27 @@ public class AnimeRequestDto extends MediumRequestDto {
   }
 
   public AnimeRequestDto() {}
+
+  public Anime toEntity() {
+    return new Anime(
+      getMediumId(),
+      getErstelltAm(),
+      getTitel(),
+      getStatus(),
+      getRating(),
+      getNotiz(),
+      season,
+      folgen,
+      currentFolge
+    );
+  }
+
+  @Override
+  public String toString() {
+    return "AnimeRequestDto{" +
+      "season=" + season +
+      ", folgen=" + folgen +
+      ", currentFolge=" + currentFolge +
+      '}';
+  }
 }

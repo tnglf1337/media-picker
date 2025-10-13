@@ -1,7 +1,6 @@
 package com.mediapicker.web.request;
 
-import com.mediapicker.domain.mediathek.medium.MediumTyp;
-import com.mediapicker.domain.mediathek.medium.Status;
+import com.mediapicker.domain.mediathek.medium.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,6 +25,19 @@ public class BuchRequestDto extends MediumRequestDto {
 
   public BuchRequestDto() {}
 
+  public Buch toEntity() {
+    return new Buch(
+      getMediumId(),
+      getErstelltAm(),
+      getTitel(),
+      getStatus(),
+      getRating(),
+      getNotiz(),
+      seiten,
+      currentSeite
+    );
+  }
+
   public Integer getCurrentSeite() {
     return currentSeite;
   }
@@ -40,5 +52,13 @@ public class BuchRequestDto extends MediumRequestDto {
 
   public void setSeiten(Integer seiten) {
     this.seiten = seiten;
+  }
+
+  @Override
+  public String toString() {
+    return "BuchRequestDto{" +
+      "seiten=" + seiten +
+      ", currentSeite=" + currentSeite +
+      '}';
   }
 }

@@ -1,7 +1,6 @@
 package com.mediapicker.web.request;
 
-import com.mediapicker.domain.mediathek.medium.MediumTyp;
-import com.mediapicker.domain.mediathek.medium.Status;
+import com.mediapicker.domain.mediathek.medium.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,5 +19,15 @@ public class FilmRequestDto extends MediumRequestDto{
 
   public FilmRequestDto() {}
 
+  public Film toEntity() {
+    return new Film(
+      getMediumId(),
+      getErstelltAm(),
+      getTitel(),
+      getStatus(),
+      getRating(),
+      getNotiz()
+    );
+  }
 
 }

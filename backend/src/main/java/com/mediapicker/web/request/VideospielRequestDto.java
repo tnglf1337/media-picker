@@ -1,8 +1,6 @@
 package com.mediapicker.web.request;
 
-import com.mediapicker.domain.mediathek.medium.MediumTyp;
-import com.mediapicker.domain.mediathek.medium.Platform;
-import com.mediapicker.domain.mediathek.medium.Status;
+import com.mediapicker.domain.mediathek.medium.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,11 +22,30 @@ public class VideospielRequestDto extends MediumRequestDto {
 
   public VideospielRequestDto() {}
 
+  public Videospiel toEntity() {
+    return new Videospiel(
+      getMediumId(),
+      getErstelltAm(),
+      getTitel(),
+      getStatus(),
+      getRating(),
+      getNotiz(),
+      platform
+    );
+  }
+
   public Platform getPlatform() {
     return platform;
   }
 
   public void setPlatform(Platform platform) {
     this.platform = platform;
+  }
+
+  @Override
+  public String toString() {
+    return "VideospielRequestDto{" +
+      "platform=" + platform +
+      '}';
   }
 }

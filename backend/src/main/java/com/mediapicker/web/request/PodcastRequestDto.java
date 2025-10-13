@@ -1,6 +1,8 @@
 package com.mediapicker.web.request;
 
+import com.mediapicker.domain.mediathek.medium.Film;
 import com.mediapicker.domain.mediathek.medium.MediumTyp;
+import com.mediapicker.domain.mediathek.medium.Podcast;
 import com.mediapicker.domain.mediathek.medium.Status;
 
 import java.time.LocalDateTime;
@@ -26,6 +28,19 @@ public class PodcastRequestDto extends MediumRequestDto {
 
   public PodcastRequestDto() {}
 
+  public Podcast toEntity() {
+    return new Podcast(
+      getMediumId(),
+      getErstelltAm(),
+      getTitel(),
+      getStatus(),
+      getRating(),
+      getNotiz(),
+      kapitel,
+      currentKapitel
+    );
+  }
+
   public Integer getKapitel() {
     return kapitel;
   }
@@ -40,5 +55,13 @@ public class PodcastRequestDto extends MediumRequestDto {
 
   public void setCurrentKapitel(Integer currentKapitel) {
     this.currentKapitel = currentKapitel;
+  }
+
+  @Override
+  public String toString() {
+    return "PodcastRequestDto{" +
+      "kapitel=" + kapitel +
+      ", currentKapitel=" + currentKapitel +
+      '}';
   }
 }

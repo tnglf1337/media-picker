@@ -1,7 +1,9 @@
 package com.mediapicker.web.request;
 
+import com.mediapicker.domain.mediathek.medium.Manga;
 import com.mediapicker.domain.mediathek.medium.MediumTyp;
 import com.mediapicker.domain.mediathek.medium.Status;
+import com.mediapicker.domain.mediathek.medium.Videospiel;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,6 +31,20 @@ public class MangaRequestDto extends  MediumRequestDto {
 
   public MangaRequestDto() {}
 
+  public Manga toEntity() {
+    return new Manga(
+      getMediumId(),
+      getErstelltAm(),
+      getTitel(),
+      getStatus(),
+      getRating(),
+      getNotiz(),
+      band,
+      kapitel,
+      currentKapitel
+    );
+  }
+
   public Integer getBand() {
     return band;
   }
@@ -51,5 +67,14 @@ public class MangaRequestDto extends  MediumRequestDto {
 
   public void setCurrentKapitel(Integer currentKapitel) {
     this.currentKapitel = currentKapitel;
+  }
+
+  @Override
+  public String toString() {
+    return "MangaRequestDto{" +
+      "band=" + band +
+      ", kapitel=" + kapitel +
+      ", currentKapitel=" + currentKapitel +
+      '}';
   }
 }

@@ -94,15 +94,16 @@ public class MediumRequestDto {
     this.notiz = notiz;
   }
 
-  public Medium toEntity() {
-    return new Medium(
-      this.mediumId,
-      this.erstelltAm,
-      this.titel,
-      this.mediumTyp,
-      this.status,
-      this.rating,
-      this.notiz
-    );
+  @Override
+  public String toString() {
+    return "MediumRequestDto{" +
+      "mediumId=" + mediumId +
+      ", erstelltAm=" + erstelltAm +
+      ", titel='" + titel + '\'' +
+      ", mediumTyp=" + mediumTyp +
+      ", status=" + status +
+      ", rating=" + rating +
+      ", notiz=" + notiz +
+      '}';
   }
 }
