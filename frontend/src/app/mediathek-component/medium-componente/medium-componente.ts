@@ -1,7 +1,8 @@
 import {AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {MediumTyp} from '../../domain/medium';
+import {Medium, MediumTyp} from '../../domain/medium';
 import {MediumErstellenForm} from './medium-erstellen-form/medium-erstellen-form';
+import {MediumApiService} from '../../service/api.service';
 
 
 @Component({
@@ -14,18 +15,23 @@ export class MediumComponente implements OnInit{
 
   openFormModalSignal = signal(false)
 
+  mediumApiService = inject(MediumApiService);
   route = inject(ActivatedRoute);
   mediumAuswahl : string = "";
 
   mediumTyp! : MediumTyp;
+  medien! : Medium[];
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.mediumTyp = params['mediumTyp'];
       this.mediumAuswahl = this.mediumHeader
-      console.log("mediumTyp: ", this.mediumTyp)
+      this.mediumApiService.getMedienByMediumTyp(this.mediumTyp).subscribe(medien => {
+        this.medien = medien;
+        console.log("got medien: ", this.medien)
+      })
     });
-    }
+  }
 
   get mediumHeader(): string {
     const headers: Record<MediumTyp, string> = {

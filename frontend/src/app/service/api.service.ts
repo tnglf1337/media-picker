@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Anime, Buch, Film, Manga, Medium, Podcast, Serie, Videospiel} from '../domain/medium';
+import {Anime, Buch, Film, Manga, Medium, MediumTyp, Podcast, Serie, Videospiel} from '../domain/medium';
 import {Mediathek} from '../domain/mediathek';
 
 @Injectable({
@@ -51,4 +51,7 @@ export class MediumApiService {
     return this.http.post<any>(this.BASE_URL_ERSTELLEN + '/podcast', medium)
   }
 
+  getMedienByMediumTyp(mediumTyp: MediumTyp) : Observable<Medium[]> {
+    return this.http.get<Medium[]>(this.BASE_URL + '/get-medien-by-medium-typ/' + mediumTyp);
+  }
 }
