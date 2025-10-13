@@ -31,8 +31,16 @@ public class Serie extends Medium {
     this.currentFolge = currentFolge;
   }
 
-  public void inkrementCurrentFolge() {
-    this.currentFolge++;
+  public boolean inkrementCurrentFolge() {
+    if(currentFolge + 1 < folgen) {
+      this.currentFolge++;
+      return true;
+    } else if (currentFolge + 1 == folgen) {
+      this.currentFolge++;
+      setBeendetStatus();
+      return true;
+    }
+    return false;
   }
 
   public Integer getSeason() {

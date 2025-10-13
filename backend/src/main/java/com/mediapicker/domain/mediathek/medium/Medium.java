@@ -70,6 +70,10 @@ public class Medium {
     return status;
   }
 
+  public void setBeendetStatus() {
+    this.status = Status.BEENDET;
+  }
+
   public Integer getRating() {
     return rating;
   }
