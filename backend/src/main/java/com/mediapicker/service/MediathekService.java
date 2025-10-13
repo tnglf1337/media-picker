@@ -36,4 +36,9 @@ public class MediathekService {
     mediathek.mediumHinzufügen(medium);
     mediathekDao.save(mediathek);
   }
+
+  public Mediathek findMediathekByUser() {
+    User user = userDao.findByUsername(username);
+    return mediathekDao.findByUser(user);
+  }
 }

@@ -1,5 +1,6 @@
 package com.mediapicker.web;
 
+import com.mediapicker.domain.mediathek.Mediathek;
 import com.mediapicker.service.MediathekService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,9 @@ public class MediathekController {
   }
 
   @GetMapping("/user-medien")
-  public ResponseEntity<Void> getUserMedium() {
-    // TODO implement
-    return null;
+  public ResponseEntity<Mediathek> getUserMedium() {
+    Mediathek mediathek = mediathekService.findMediathekByUser();
+    return ResponseEntity.ok(mediathek);
   }
 
   @DeleteMapping("/medium-loeschen")
