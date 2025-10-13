@@ -16,3 +16,7 @@ spring:
         show_sql: false
 server:
   port: 9756
+app:
+  offline:
+    default:
+      username: "off_user"
