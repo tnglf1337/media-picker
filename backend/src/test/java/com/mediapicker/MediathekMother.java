@@ -20,7 +20,9 @@ public class MediathekMother {
     Manga manga = new Manga(null, LocalDateTime.now(), "One Piece", Status.AM_LESEN, 5, notizen, 5, 220, 15);
     Podcast podcast = new Podcast(null, LocalDateTime.now(), "Tech Talk", Status.AM_HOEREN, 5, notizen, 50, 40);
     Serie serie = new Serie(null, LocalDateTime.now(), "Breaking Bad", Status.BEENDET, 5, notizen, 5, 62, 13);
-    Videospiel videospiel = new Videospiel(null, LocalDateTime.now(), "The Last of Us", Status.AM_SPIELEN, 5, notizen, Platform.PLAYSTATION_5);
+    Videospiel videospiel1 = new Videospiel(null, LocalDateTime.now(), "The Last of Us", Status.AM_SPIELEN, 5, notizen, Platform.PLAYSTATION_5);
+    Videospiel videospiel2 = new Videospiel(null, LocalDateTime.now(), "Boggemon", Status.AM_SPIELEN, 6, notizen, Platform.NINTENDO_SWITCH);
+
 
     List<Medium> mediaList = new ArrayList<>();
     mediaList.add(anime);
@@ -29,7 +31,8 @@ public class MediathekMother {
     mediaList.add(manga);
     mediaList.add(podcast);
     mediaList.add(serie);
-    mediaList.add(videospiel);
+    mediaList.add(videospiel1);
+    mediaList.add(videospiel2);
 
     return new Mediathek(null, user, mediaList);
   }
