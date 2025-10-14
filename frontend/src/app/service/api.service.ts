@@ -52,6 +52,6 @@ export class MediumApiService {
   }
 
   getMedienByMediumTyp(mediumTyp: MediumTyp) : Observable<Medium[]> {
-    return this.http.get<Medium[]>(this.BASE_URL + '/get-medien-by-medium-typ/' + mediumTyp);
+    return this.http.get<Medium[]>(this.BASE_URL + '/get-medien-by-typ/' + MediumTyp[mediumTyp]);
   }
 }
