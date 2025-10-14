@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @Entity
 @Check(constraints = "rating >= 0 AND rating <= 10")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Medium {
 
   @Id
