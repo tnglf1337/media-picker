@@ -8,25 +8,7 @@
     </div>
   </section>
   <section class="border-r">
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
-    <p>Hier sind alle Medien hehehehe</p>
+    <p *ngFor="let medium of medien">{{medium.getTitel()}}</p>
   </section>
   <section>
     <app-medium-erstellen-form
