@@ -1,14 +1,14 @@
 import {Component, effect, inject, OnInit, signal} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Buch, Film, Manga, Medium, MediumTyp, Podcast, Serie, Videospiel} from '../../domain/medium';
+import {MediumTyp} from '../../domain/medium';
 import {MediumErstellenForm} from './medium-erstellen-form/medium-erstellen-form';
 import {MediumApiService} from '../../service/api.service';
-import {NgForOf} from '@angular/common';
+import {DatePipe, NgForOf, NgIf} from '@angular/common';
 
 
 @Component({
   selector: 'app-medium-componente',
-  imports: [MediumErstellenForm, NgForOf],
+  imports: [MediumErstellenForm, NgForOf, NgIf, DatePipe],
   templateUrl: './medium-componente.html',
   styleUrl: './medium-componente.css'
 })
@@ -22,7 +22,7 @@ export class MediumComponente implements OnInit{
   mediumAuswahl : string = "";
 
   mediumTyp! : MediumTyp;
-  medien! : Medium[];
+  medien! : any[];
 
   constructor() {
     effect(() => {
@@ -38,18 +38,7 @@ export class MediumComponente implements OnInit{
       this.mediumTyp = params['mediumTyp'];
       this.mediumAuswahl = this.mediumHeader
       this.mediumApiService.getMedienByMediumTyp(this.mediumTyp).subscribe(arr => {
-        this.medien = arr.map(m => {
-          switch (this.mediumTyp) {
-            case MediumTyp.SERIE: return Object.assign(new Serie(), m);
-            case MediumTyp.ANIME: return Object.assign(new Serie(), m);
-            case MediumTyp.MANGA: return Object.assign(new Manga(), m);
-            case MediumTyp.FILM: return Object.assign(new Film(), m);
-            case MediumTyp.VIDEOSPIEL: return Object.assign(new Videospiel(), m);
-            case MediumTyp.BUCH: return Object.assign(new Buch(), m);
-            case MediumTyp.PODCAST: return Object.assign(new Podcast(), m);
-            default: return Object.assign(new Medium(), m);
-          }
-        });
+        this.medien = arr
       });
     });
   }
@@ -71,4 +60,6 @@ export class MediumComponente implements OnInit{
   openFormModal() {
     this.openFormModalSignal.update(v => true)
   }
+
+  protected readonly MediumTyp = MediumTyp;
 }
