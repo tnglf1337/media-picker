@@ -8,7 +8,32 @@
     </div>
   </section>
   <section class="border-r">
-    <p *ngFor="let medium of medien">{{medium.getTitel()}}</p>
+    <table class="table">
+      <tbody>
+        <tr *ngFor="let medium of medien">
+          <td>{{medium.titel}}</td>
+          <ng-container *ngIf="mediumTyp == MediumTyp.VIDEOSPIEL">
+            <td>{{ medium.platform }}</td>
+          </ng-container>
+          <ng-container *ngIf="mediumTyp == MediumTyp.SERIE || mediumTyp == MediumTyp.ANIME">
+            <td>Season {{ medium.season }}</td>
+            <td>Folgen: {{ medium.currentFolge }}/{{ medium.folgen }}</td>
+          </ng-container>
+          <ng-container *ngIf="mediumTyp == MediumTyp.MANGA">
+            <td>Band {{ medium.band }}</td>
+            <td>Kapitel: {{ medium.currentKapitel }}/{{medium.kapitel}}</td>
+          </ng-container>
+          <ng-container *ngIf="mediumTyp == MediumTyp.BUCH">
+            <td>Seite: {{ medium.currentSeite }}/{{medium.seiten}}</td>
+          </ng-container>
+          <ng-container *ngIf="mediumTyp == MediumTyp.PODCAST">
+            <td>Kapitel: {{ medium.currentKapitel }}/{{medium.kapitel}}</td>
+          </ng-container>
+          <td>{{medium.rating}}/10</td>
+          <td>{{medium.status}}</td>
+          <td>{{medium.erstelltAm | date:'dd.MM.yyyy':'':'de'}}</td>
+        </tr>
+    </table>
   </section>
   <section>
     <app-medium-erstellen-form
