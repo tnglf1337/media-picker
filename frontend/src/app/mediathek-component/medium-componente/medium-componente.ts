@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
+import {Component, effect, inject, OnInit, signal} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Buch, Film, Manga, Medium, MediumTyp, Podcast, Serie, Videospiel} from '../../domain/medium';
 import {MediumErstellenForm} from './medium-erstellen-form/medium-erstellen-form';
@@ -15,6 +15,7 @@ import {NgForOf} from '@angular/common';
 export class MediumComponente implements OnInit{
 
   openFormModalSignal = signal(false)
+  mediumErstelltSignal = signal(false)
 
   mediumApiService = inject(MediumApiService);
   route = inject(ActivatedRoute);
@@ -22,6 +23,15 @@ export class MediumComponente implements OnInit{
 
   mediumTyp! : MediumTyp;
   medien! : Medium[];
+
+  constructor() {
+    effect(() => {
+      if (this.mediumErstelltSignal()) {
+        this.ngOnInit()
+        this.mediumErstelltSignal.set(false)
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {

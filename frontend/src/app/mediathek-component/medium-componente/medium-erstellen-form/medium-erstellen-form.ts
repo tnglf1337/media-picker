@@ -38,6 +38,9 @@ export class MediumErstellenForm implements OnChanges {
   openFormModualSignal!: WritableSignal<boolean>;
 
   @Input()
+  mediumErstelltSignal!: WritableSignal<boolean>;
+
+  @Input()
   mediumTyp!: MediumTyp;
 
   @ViewChild('mediumFormModul', { static: false })
@@ -123,19 +126,47 @@ export class MediumErstellenForm implements OnChanges {
     const medium: Serie | Film | Anime | Manga | Videospiel | Buch | Podcast = this.mediumForm.buildMediumTypEntity();
 
     if (medium instanceof Serie) {
-      this.apiService.postSerie(medium).subscribe(res => {});
+      this.apiService.postSerie(medium).subscribe({
+        next: () => {
+          this.mediumErstelltSignal.set(true);
+        }
+      });
     } else if (medium instanceof Film) {
-      this.apiService.postFilm(medium).subscribe(res => {});
+      this.apiService.postFilm(medium).subscribe( {
+        next: () => {
+          this.mediumErstelltSignal.set(true);
+        }
+      });
+      this.mediumErstelltSignal.set(true);
     } else if (medium instanceof Anime) {
-      this.apiService.postAnime(medium).subscribe(res => {});
+      this.apiService.postAnime(medium).subscribe({
+        next: () => {
+          this.mediumErstelltSignal.set(true);
+        }
+      });
     } else if (medium instanceof Manga) {
-      this.apiService.postManga(medium).subscribe(res => {});
+      this.apiService.postManga(medium).subscribe({
+        next: () => {
+          this.mediumErstelltSignal.set(true);
+        }
+      });
     } else if (medium instanceof Videospiel) {
-      this.apiService.postVideospiel(medium).subscribe(res => {});
+      this.apiService.postVideospiel(medium).subscribe({
+        next: () => {
+          this.mediumErstelltSignal.set(true);
+        }
+      });
     } else if (medium instanceof Buch) {
-      this.apiService.postBuch(medium).subscribe(res => {});
+      this.apiService.postBuch(medium).subscribe({
+        next: () => {
+        this.mediumErstelltSignal.set(true);
+      }});
     } else if (medium instanceof Podcast) {
-      this.apiService.postPodcast(medium).subscribe(res => {});
+      this.apiService.postPodcast(medium).subscribe({
+        next: () => {
+          this.mediumErstelltSignal.set(true);
+        }
+      });
     }
 
     this.mediumForm.formulareZuruecksetzen()
