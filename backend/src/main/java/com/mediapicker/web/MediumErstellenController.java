@@ -54,14 +54,14 @@ public class MediumErstellenController {
   @PostMapping("/buch")
   public ResponseEntity<Void> buchErstellen(@RequestBody BuchRequestDto req) {
     System.out.println(req.toString());
-    // TODO implement
+    mediathekService.mediumErstellen(req.toEntity());
     return null;
   }
 
   @PostMapping("/podcast")
   public ResponseEntity<Void> podcastErstellen(@RequestBody PodcastRequestDto req) {
     System.out.println(req.toString());
-    // TODO implement
+    mediathekService.mediumErstellen(req.toEntity());
     return null;
   }
 }
