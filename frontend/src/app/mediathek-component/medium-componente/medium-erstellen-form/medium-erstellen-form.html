@@ -85,6 +85,11 @@
           </div>
         </form>
       </ng-container>
+      <ng-container *ngIf="internalServerError">
+        <div id="internal-server-error-info-container">
+          <p id="error-info">Modul konnte nicht erstellt werden wegen eines Server-Fehlers.</p>
+        </div>
+      </ng-container>
     </blaze-card-body>
     <blaze-card-footer>
       <div class="c-input-group">

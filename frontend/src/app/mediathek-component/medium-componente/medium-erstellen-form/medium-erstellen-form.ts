@@ -49,6 +49,7 @@ export class MediumErstellenForm implements OnChanges {
   apiService = inject(MediumApiService)
   statusOptionen: Status[] = [];
   mediumForm: MediumFormular = {} as MediumFormular;
+  internalServerError : boolean = false;
 
   constructor() {
     effect(() => {
@@ -131,6 +132,7 @@ export class MediumErstellenForm implements OnChanges {
           this.mediumErstelltSignal.set(true);
         },
         error: status => {
+          this.internalServerError = true;
           console.error('Fehler beim Erstellen des Mediums:', status);
         }
       });
@@ -140,6 +142,7 @@ export class MediumErstellenForm implements OnChanges {
           this.mediumErstelltSignal.set(true);
         },
         error: status => {
+          this.internalServerError = true;
           console.error('Fehler beim Erstellen des Mediums:', status);
         }
       });
@@ -150,6 +153,7 @@ export class MediumErstellenForm implements OnChanges {
           this.mediumErstelltSignal.set(true);
         },
         error: status => {
+          this.internalServerError = true;
           console.error('Fehler beim Erstellen des Mediums:', status);
         }
       });
@@ -159,6 +163,7 @@ export class MediumErstellenForm implements OnChanges {
           this.mediumErstelltSignal.set(true);
         },
         error: status => {
+          this.internalServerError = true;
           console.error('Fehler beim Erstellen des Mediums:', status);
         }
       });
@@ -168,6 +173,7 @@ export class MediumErstellenForm implements OnChanges {
           this.mediumErstelltSignal.set(true);
         },
         error: status => {
+          this.internalServerError = true;
           console.error('Fehler beim Erstellen des Mediums:', status);
         }
       });
@@ -177,6 +183,7 @@ export class MediumErstellenForm implements OnChanges {
         this.mediumErstelltSignal.set(true);
         },
         error: status => {
+          this.internalServerError = true;
           console.error('Fehler beim Erstellen des Mediums:', status);
         }
       });
@@ -186,6 +193,7 @@ export class MediumErstellenForm implements OnChanges {
           this.mediumErstelltSignal.set(true);
         },
         error: status => {
+          this.internalServerError = true;
           console.error('Fehler beim Erstellen des Mediums:', status);
         }
       });
