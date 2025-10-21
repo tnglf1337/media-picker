@@ -11,12 +11,20 @@
         <div class="mb-3">
           <label for="titel" class="form-label">Titel</label>
           <input type="text" class="form-control" id="titel" formControlName="titel">
+          <small class="text-danger"
+                *ngIf="mediumForm.getPrimaerForm().controls['titel'].errors?.['required'] && mediumForm.getPrimaerForm().controls['titel'].touched">
+              Bitte Titel angeben
+          </small>
         </div>
         <div class="mb-3">
           <label for="status" class="form-label">Status</label>
           <select  class="form-control" id="status" formControlName="status">
-            <option *ngFor="let status of statusOptionen">{{status}}</option>
+            <option *ngFor="let status of statusOptionen">{{status | statusTransform}}</option>
           </select>
+          <small class="text-danger"
+                 *ngIf="mediumForm.getPrimaerForm().controls['status'].errors?.['required'] && mediumForm.getPrimaerForm().controls['status'].touched">
+            Bitte Status auswählen
+          </small>
         </div>
       </form>
       <ng-container *ngIf="mediumTyp == MediumTyp.SERIE || mediumTyp == MediumTyp.ANIME">
@@ -24,10 +32,18 @@
           <div class="mb-3">
             <label for="season" class="form-label">Staffel</label>
             <input type="text" class="form-control" id="season" formControlName="season">
+            <small class="text-danger"
+                   *ngIf="mediumForm.getSekundaerForm().get('season')?.errors?.['required'] && mediumForm.getSekundaerForm().controls['season'].touched">
+              Bitte Staffel angeben
+            </small>
           </div>
           <div class="mb-3">
             <label for="folgen" class="form-label">Folgen</label>
             <input type="text" class="form-control" id="folgen" formControlName="folgen">
+            <small class="text-danger"
+                   *ngIf="mediumForm.getSekundaerForm().controls['folgen'].errors?.['required'] && mediumForm.getSekundaerForm().controls['folgen'].touched">
+              Bitte Folgenanzahl angeben
+            </small>
           </div>
           <div class="mb-3">
             <label for="current-folge" class="form-label">Aktuelle Folge</label>
@@ -40,10 +56,18 @@
           <div class="mb-3">
             <label for="band" class="form-label">Band</label>
             <input type="text" class="form-control" id="band" formControlName="band">
+            <small class="text-danger"
+                   *ngIf="mediumForm.getSekundaerForm().controls['band'].errors?.['required'] && mediumForm.getSekundaerForm().controls['band'].touched">
+              Bitte Band angeben
+            </small>
           </div>
           <div class="mb-3">
             <label for="kapitel" class="form-label">Kapteil</label>
             <input type="text" class="form-control" id="kapitel" formControlName="kapitel">
+            <small class="text-danger"
+                   *ngIf="mediumForm.getSekundaerForm().controls['kapitel'].errors?.['required'] && mediumForm.getSekundaerForm().controls['kapitel'].touched">
+              Bitte Kapitel angeben
+            </small>
           </div>
           <div class="mb-3">
             <label for="current-kapitel" class="form-label">Aktuelles Kapitel</label>
@@ -56,8 +80,12 @@
           <div class="mb-3">
             <label for="platform" class="form-label">Platform</label>
             <select type="text" class="form-control" id="platform" formControlName="platform">
-              <option *ngFor="let platform of platforms">{{platform}}</option>
+              <option *ngFor="let platform of platforms">{{platform | platformTransform}}</option>
             </select>
+            <small class="text-danger"
+                   *ngIf="mediumForm.getSekundaerForm().controls['platform'].errors?.['required'] && mediumForm.getSekundaerForm().controls['platform'].touched">
+              Bitte Platform auswählen
+            </small>
           </div>
         </form>
       </ng-container>
@@ -66,6 +94,10 @@
           <div class="mb-3">
             <label for="seiten" class="form-label">Seiten</label>
             <input type="text" class="form-control" id="seiten" formControlName="seiten">
+            <small class="text-danger"
+                   *ngIf="mediumForm.getSekundaerForm().controls['seiten'].errors?.['required'] && mediumForm.getSekundaerForm().controls['seiten'].touched">
+              Bitte Seitenanzahl angeben
+            </small>
           </div>
           <div class="mb-3">
             <label for="current-seite" class="form-label">Aktuelle Seite</label>
@@ -78,6 +110,10 @@
           <div class="mb-3">
             <label for="kapitel" class="form-label">Kapitel</label>
             <input type="text" class="form-control" id="kapitel" formControlName="kapitel">
+            <small class="text-danger"
+                   *ngIf="mediumForm.getSekundaerForm().controls['kapitel'].errors?.['required'] && mediumForm.getSekundaerForm().controls['kapitel'].touched">
+              Bitte Kapitel angeben
+            </small>
           </div>
           <div class="mb-3">
             <label for="current-kapitel" class="form-label">Aktuelles Kapitel</label>
