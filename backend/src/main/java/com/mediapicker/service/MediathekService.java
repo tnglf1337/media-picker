@@ -6,6 +6,7 @@ import com.mediapicker.domain.mediathek.Mediathek;
 import com.mediapicker.domain.mediathek.medium.*;
 import com.mediapicker.domain.user.User;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -30,11 +31,18 @@ public class MediathekService {
   }
 
   @Transactional
-  public void mediumErstellen(Medium medium) {
+  public boolean mediumErstellen(Medium medium) {
     User user = userDao.findByUsername(username);
     Mediathek mediathek = mediathekDao.findByUser(user);
     mediathek.mediumHinzufügen(medium);
-    mediathekDao.save(mediathek);
+    try {
+      mediathekDao.save(mediathek);
+      return true;
+    } catch (IllegalArgumentException | OptimisticLockingFailureException e) {
+      System.out.println(e.getMessage());
+      return false;
+    }
+
   }
 
   public Mediathek findMediathekByUser() {
