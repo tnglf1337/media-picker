@@ -18,8 +18,7 @@ public class MediumErstellenController {
 
   @PostMapping("/serie")
   public ResponseEntity<Void> serieErstellen(@RequestBody SerieRequestDto req) {
-    System.out.println(req.toString());
-    boolean success =mediathekService.mediumErstellen(req.toEntity());
+    boolean success = mediathekService.mediumErstellen(req.toEntity());
     if (success) {
       return ResponseEntity.ok().build();
     } else {
@@ -29,43 +28,61 @@ public class MediumErstellenController {
 
   @PostMapping("/film")
   public ResponseEntity<Void> filmErstellen(@RequestBody FilmRequestDto req) {
-    System.out.println(req.toString());
-    mediathekService.mediumErstellen(req.toEntity());
-    return null;
+    boolean success = mediathekService.mediumErstellen(req.toEntity());
+    if (success) {
+      return ResponseEntity.ok().build();
+    } else {
+      return ResponseEntity.internalServerError().build();
+    }
   }
 
   @PostMapping("/anime")
   public ResponseEntity<Void> animeErstellen(@RequestBody AnimeRequestDto req) {
-    System.out.println(req.toString());
-    mediathekService.mediumErstellen(req.toEntity());
-    return null;
+    boolean success = mediathekService.mediumErstellen(req.toEntity());
+    if (success) {
+      return ResponseEntity.ok().build();
+    } else {
+      return ResponseEntity.internalServerError().build();
+    }
   }
 
   @PostMapping("/manga")
   public ResponseEntity<Void> mangaErstellen(@RequestBody MangaRequestDto req) {
-    System.out.println(req.toString());
-    mediathekService.mediumErstellen(req.toEntity());
-    return null;
+    boolean success = mediathekService.mediumErstellen(req.toEntity());
+    if (success) {
+      return ResponseEntity.ok().build();
+    } else {
+      return ResponseEntity.internalServerError().build();
+    }
   }
 
   @PostMapping("/videospiel")
   public ResponseEntity<Void> videospielErstellen(@RequestBody VideospielRequestDto req) {
-    System.out.println(req.toString());
-    mediathekService.mediumErstellen(req.toEntity());
-    return null;
+    boolean success = mediathekService.mediumErstellen(req.toEntity());
+    if (success) {
+      return ResponseEntity.ok().build();
+    } else {
+      return ResponseEntity.internalServerError().build();
+    }
   }
 
   @PostMapping("/buch")
   public ResponseEntity<Void> buchErstellen(@RequestBody BuchRequestDto req) {
-    System.out.println(req.toString());
-    mediathekService.mediumErstellen(req.toEntity());
-    return null;
+    boolean success = mediathekService.mediumErstellen(req.toEntity());
+    if (success) {
+      return ResponseEntity.ok().build();
+    } else {
+      return ResponseEntity.internalServerError().build();
+    }
   }
 
   @PostMapping("/podcast")
   public ResponseEntity<Void> podcastErstellen(@RequestBody PodcastRequestDto req) {
-    System.out.println(req.toString());
-    mediathekService.mediumErstellen(req.toEntity());
-    return null;
+    boolean success = mediathekService.mediumErstellen(req.toEntity());
+    if (success) {
+      return ResponseEntity.ok().build();
+    } else {
+      return ResponseEntity.internalServerError().build();
+    }
   }
 }
