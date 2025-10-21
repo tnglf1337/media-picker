@@ -19,8 +19,12 @@ public class MediumErstellenController {
   @PostMapping("/serie")
   public ResponseEntity<Void> serieErstellen(@RequestBody SerieRequestDto req) {
     System.out.println(req.toString());
-    mediathekService.mediumErstellen(req.toEntity());
-    return null;
+    boolean success =mediathekService.mediumErstellen(req.toEntity());
+    if (success) {
+      return ResponseEntity.ok().build();
+    } else {
+      return ResponseEntity.internalServerError().build();
+    }
   }
 
   @PostMapping("/film")
