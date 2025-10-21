@@ -15,6 +15,8 @@ import {NgForOf, NgIf} from '@angular/common';
 import {MediumFormular} from '../../../domain/form';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MediumApiService} from '../../../service/api.service';
+import {StatusPipe} from '../../../status.pipe';
+import {PlatformPipe} from '../../../platform.pipe';
 
 interface BlazeModalElement extends HTMLElement {
   show: () => void;
@@ -27,7 +29,9 @@ interface BlazeModalElement extends HTMLElement {
   imports: [
     NgForOf,
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    StatusPipe,
+    PlatformPipe
   ],
   templateUrl: './medium-erstellen-form.html',
   styleUrl: './medium-erstellen-form.css',
@@ -118,7 +122,7 @@ export class MediumErstellenForm implements OnChanges {
   }
 
   get platforms() {
-    return Object.values(Platform);
+    return [Platform.PC, Platform.PLAYSTATION_4, Platform.PLAYSTATION_5, Platform.PLAYSTATION_6, Platform.NINTENDO_SWITCH, Platform.NINTENDO_SWITCH_2];
   }
 
   protected readonly MediumTyp = MediumTyp;
