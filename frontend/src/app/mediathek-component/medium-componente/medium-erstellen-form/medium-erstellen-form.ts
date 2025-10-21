@@ -129,12 +129,18 @@ export class MediumErstellenForm implements OnChanges {
       this.apiService.postSerie(medium).subscribe({
         next: () => {
           this.mediumErstelltSignal.set(true);
+        },
+        error: status => {
+          console.error('Fehler beim Erstellen des Mediums:', status);
         }
       });
     } else if (medium instanceof Film) {
       this.apiService.postFilm(medium).subscribe( {
         next: () => {
           this.mediumErstelltSignal.set(true);
+        },
+        error: status => {
+          console.error('Fehler beim Erstellen des Mediums:', status);
         }
       });
       this.mediumErstelltSignal.set(true);
@@ -142,29 +148,45 @@ export class MediumErstellenForm implements OnChanges {
       this.apiService.postAnime(medium).subscribe({
         next: () => {
           this.mediumErstelltSignal.set(true);
+        },
+        error: status => {
+          console.error('Fehler beim Erstellen des Mediums:', status);
         }
       });
     } else if (medium instanceof Manga) {
       this.apiService.postManga(medium).subscribe({
         next: () => {
           this.mediumErstelltSignal.set(true);
+        },
+        error: status => {
+          console.error('Fehler beim Erstellen des Mediums:', status);
         }
       });
     } else if (medium instanceof Videospiel) {
       this.apiService.postVideospiel(medium).subscribe({
         next: () => {
           this.mediumErstelltSignal.set(true);
+        },
+        error: status => {
+          console.error('Fehler beim Erstellen des Mediums:', status);
         }
       });
     } else if (medium instanceof Buch) {
       this.apiService.postBuch(medium).subscribe({
         next: () => {
         this.mediumErstelltSignal.set(true);
-      }});
+        },
+        error: status => {
+          console.error('Fehler beim Erstellen des Mediums:', status);
+        }
+      });
     } else if (medium instanceof Podcast) {
       this.apiService.postPodcast(medium).subscribe({
         next: () => {
           this.mediumErstelltSignal.set(true);
+        },
+        error: status => {
+          console.error('Fehler beim Erstellen des Mediums:', status);
         }
       });
     }
