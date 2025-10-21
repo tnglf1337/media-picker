@@ -4,6 +4,12 @@
   margin: 2px;
 }
 
+.border-b {
+  border: 1px solid blue;
+  padding: 1px;
+  margin: 1px;
+}
+
 #medium-header-section {
   display: flex;
   justify-content: space-between;
@@ -23,6 +29,21 @@
 #medium-hinzufügen-btn:hover {
   background-color: #365bea;
   cursor: pointer;
+}
+
+.table-header {
+  color: #4c4c4c;
+  font-weight: bold;
+}
+
+#medien-table {
+  border: 1px solid blue;
+}
+
+.medien-table-td {
+  text-align: center;
+  vertical-align: center;
+  width: 10%;
 }
 
 .flex-v-align {

@@ -8,32 +8,39 @@
     </div>
   </section>
   <section class="border-r">
-    <table class="table">
-      <tbody>
-        <tr *ngFor="let medium of medien">
-          <td>{{medium.titel}}</td>
-          <ng-container *ngIf="mediumTyp == MediumTyp.VIDEOSPIEL">
-            <td>{{ medium.platform }}</td>
-          </ng-container>
-          <ng-container *ngIf="mediumTyp == MediumTyp.SERIE || mediumTyp == MediumTyp.ANIME">
-            <td>Season {{ medium.season }}</td>
-            <td>Folgen: {{ medium.currentFolge }}/{{ medium.folgen }}</td>
-          </ng-container>
-          <ng-container *ngIf="mediumTyp == MediumTyp.MANGA">
-            <td>Band {{ medium.band }}</td>
-            <td>Kapitel: {{ medium.currentKapitel }}/{{medium.kapitel}}</td>
-          </ng-container>
-          <ng-container *ngIf="mediumTyp == MediumTyp.BUCH">
-            <td>Seite: {{ medium.currentSeite }}/{{medium.seiten}}</td>
-          </ng-container>
-          <ng-container *ngIf="mediumTyp == MediumTyp.PODCAST">
-            <td>Kapitel: {{ medium.currentKapitel }}/{{medium.kapitel}}</td>
-          </ng-container>
-          <td>{{medium.rating}}/10</td>
-          <td>{{medium.status}}</td>
-          <td>{{medium.erstelltAm | date:'dd.MM.yyyy':'':'de'}}</td>
-        </tr>
-    </table>
+    <ng-container *ngFor="let status of Object.values(Status)">
+      <ng-container *ngIf="medienFilteredByStatus(status).length != 0">
+        <h4 class="table-header">{{status | statusTransform}}</h4>
+      </ng-container>
+      <table id="medien-table" class="table border-b">
+        <tbody>
+          <tr *ngFor="let medium of medienFilteredByStatus(status)">
+            <ng-container *ngIf="medium.length != 0">
+              <td class="medien-table-td border-b">{{medium.titel}}</td>
+              <ng-container *ngIf="mediumTyp == MediumTyp.VIDEOSPIEL">
+                <td class="medien-table-td border-b">{{ medium.platform }}</td>
+              </ng-container>
+              <ng-container *ngIf="mediumTyp == MediumTyp.SERIE || mediumTyp == MediumTyp.ANIME">
+                <td class="medien-table-td border-b">Staffel {{ medium.season }}</td>
+                <td class="medien-table-td border-b">Folgen: {{ medium.currentFolge }}/{{ medium.folgen }}</td>
+              </ng-container>
+              <ng-container *ngIf="mediumTyp == MediumTyp.MANGA">
+                <td class="medien-table-td border-b">Band {{ medium.band }}</td>
+                <td class="medien-table-td border-b">Kapitel: {{ medium.currentKapitel }}/{{medium.kapitel}}</td>
+              </ng-container>
+              <ng-container *ngIf="mediumTyp == MediumTyp.BUCH">
+                <td class="medien-table-td border-b" >Seite: {{ medium.currentSeite }}/{{medium.seiten}}</td>
+              </ng-container>
+              <ng-container *ngIf="mediumTyp == MediumTyp.PODCAST">
+                <td class="medien-table-td border-b">Kapitel: {{ medium.currentKapitel }}/{{medium.kapitel}}</td>
+              </ng-container>
+              <td class="medien-table-td border-b">{{medium.rating}}/10</td>
+              <td class=" medien-table-td border-b">{{medium.erstelltAm | date:'dd.MM.yyyy':'':'de'}}</td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
   </section>
   <section>
     <app-medium-erstellen-form

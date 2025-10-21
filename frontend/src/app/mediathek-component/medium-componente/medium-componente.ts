@@ -1,14 +1,15 @@
 import {Component, effect, inject, OnInit, signal} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {MediumTyp} from '../../domain/medium';
+import {MediumTyp, Status} from '../../domain/medium';
 import {MediumErstellenForm} from './medium-erstellen-form/medium-erstellen-form';
 import {MediumApiService} from '../../service/api.service';
 import {DatePipe, NgForOf, NgIf} from '@angular/common';
+import {StatusPipe} from '../../status.pipe';
 
 
 @Component({
   selector: 'app-medium-componente',
-  imports: [MediumErstellenForm, NgForOf, NgIf, DatePipe],
+  imports: [MediumErstellenForm, NgForOf, NgIf, DatePipe, StatusPipe],
   templateUrl: './medium-componente.html',
   styleUrl: './medium-componente.css'
 })
@@ -57,9 +58,15 @@ export class MediumComponente implements OnInit{
     return headers[this.mediumTyp] ?? 'Medien';
   }
 
+  medienFilteredByStatus(status : string | Status) {
+    return this.medien.filter(medien => medien.status === status)
+  }
+
   openFormModal() {
     this.openFormModalSignal.update(v => true)
   }
 
   protected readonly MediumTyp = MediumTyp;
+  protected readonly Object = Object;
+  protected readonly Status = Status;
 }
