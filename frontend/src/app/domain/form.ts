@@ -1,7 +1,5 @@
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Anime, Buch, Film, Manga, Medium, MediumTyp, Podcast, Serie, Status, Videospiel} from './medium';
-import { v4 as uuid } from 'uuid';
-
+import {Anime, Buch, Film, Manga, MediumTyp, Podcast, Serie, Videospiel} from './medium';
 export class MediumFormular {
 
   private primärForm : FormGroup = {} as FormGroup;
@@ -15,7 +13,7 @@ export class MediumFormular {
   initPrimaerForm() {
     this.primärForm = new FormGroup({
         titel: new FormControl(null, [Validators.required]),
-        status: new FormControl(Status.GEPLANT, [Validators.required])
+        status: new FormControl(null, [Validators.required])
     })
   }
 
