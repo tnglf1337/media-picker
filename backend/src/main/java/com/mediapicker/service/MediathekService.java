@@ -12,6 +12,7 @@ import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -94,5 +95,67 @@ public class MediathekService {
       System.out.println(e.getMessage());
       return false;
     }
+  }
+
+  public boolean inkrementMedium(UUID mediumId) {
+    Mediathek mediathek = findMediathekByUser();
+    List<Medium> l = mediathek.getMediaListe();
+
+    Optional<? extends Medium> medium = l.stream().filter(m -> m.getMediumId().equals(mediumId)).findFirst();
+
+    if (medium.isPresent() && medium.get() instanceof Serie) {
+      Serie serie = (Serie) medium.get();
+      serie.inkrementCurrentFolge();
+    } else if (medium.isPresent() && medium.get() instanceof Anime) {
+      Anime anime = (Anime) medium.get();
+      anime.inkrementCurrentFolge();
+    } else if (medium.isPresent() && medium.get() instanceof Manga) {
+      Manga manga = (Manga) medium.get();
+      manga.inkrementCurrentKapitel();
+    } else if (medium.isPresent() && medium.get() instanceof Buch) {
+      Buch buch = (Buch) medium.get();
+      buch.inkrementCurrentSeite();
+    } else if (medium.isPresent() && medium.get() instanceof Podcast) {
+      Podcast podcast = (Podcast) medium.get();
+      podcast.inkrementCurrentKapitel();
+    } else {
+      log.error("Medium mit ID " + mediumId + " nicht gefunden.");
+      return false;
+    }
+
+    mediathekDao.save(mediathek);
+    log.info("Medium " + medium + " wurde inkrementiert.");
+    return true;
+  }
+
+  public boolean dekrementMedium(UUID mediumId) {
+    Mediathek mediathek = findMediathekByUser();
+    List<Medium> l = mediathek.getMediaListe();
+
+    Optional<? extends Medium> medium = l.stream().filter(m -> m.getMediumId().equals(mediumId)).findFirst();
+
+    if (medium.isPresent() && medium.get() instanceof Serie) {
+      Serie serie = (Serie) medium.get();
+      serie.dekrementCurrentFolge();
+    } else if (medium.isPresent() && medium.get() instanceof Anime) {
+      Anime anime = (Anime) medium.get();
+      anime.dekrementCurrentFolge();
+    } else if (medium.isPresent() && medium.get() instanceof Manga) {
+      Manga manga = (Manga) medium.get();
+      manga.dekrementCurrentKapitel();
+    } else if (medium.isPresent() && medium.get() instanceof Buch) {
+      Buch buch = (Buch) medium.get();
+      buch.dekrementCurrentSeite();
+    } else if (medium.isPresent() && medium.get() instanceof Podcast) {
+      Podcast podcast = (Podcast) medium.get();
+      podcast.dekrementCurrentKapitel();
+    } else {
+      log.error("Medium mit ID " + mediumId + " nicht gefunden.");
+      return false;
+    }
+
+    mediathekDao.save(mediathek);
+    log.info("Medium " + medium + " wurde dekrementiert.");
+    return true;
   }
 }

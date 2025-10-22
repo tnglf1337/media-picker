@@ -3,6 +3,7 @@ package com.mediapicker;
 import com.mediapicker.db.MediathekDao;
 import com.mediapicker.db.UserDao;
 import com.mediapicker.domain.mediathek.Mediathek;
+import com.mediapicker.domain.mediathek.medium.Medium;
 import com.mediapicker.domain.mediathek.medium.Serie;
 import com.mediapicker.domain.mediathek.medium.Videospiel;
 import com.mediapicker.domain.user.User;
@@ -92,5 +93,33 @@ public class MediathekServiceTest {
     Mediathek mediathekAfter = mediathekDao.findByUser(user);
     assertThat(mediathekAfter.getMediaListe()).hasSize(sizeBefore - 1);
     assertThat(success).isTrue();
+  }
+
+  @Test
+  @DisplayName("Die currentFolge einer Serie wird erfolgreich inkrementiert")
+  void test4() {
+    mediathekDao.save(mediathek);
+    Mediathek mediathekBefore = mediathekDao.findByUser(user);
+    UUID serieId = mediathekBefore.getMediaListe().get(5).getMediumId();
+
+    service.inkrementMedium(serieId);
+
+    Mediathek mediathekAfter = mediathekDao.findByUser(user);
+    Serie inkrementiertesMedium = (Serie) mediathekAfter.getMediaListe().get(5);
+    assertThat(inkrementiertesMedium.getCurrentFolge()).isEqualTo(14);
+  }
+
+  @Test
+  @DisplayName("Die currentFolge einer Serie wird erfolgreich dekrementiert")
+  void test5() {
+    mediathekDao.save(mediathek);
+    Mediathek mediathekBefore = mediathekDao.findByUser(user);
+    UUID serieId = mediathekBefore.getMediaListe().get(5).getMediumId();
+
+    service.dekrementMedium(serieId);
+
+    Mediathek mediathekAfter = mediathekDao.findByUser(user);
+    Serie inkrementiertesMedium = (Serie) mediathekAfter.getMediaListe().get(5);
+    assertThat(inkrementiertesMedium.getCurrentFolge()).isEqualTo(12);
   }
 }
