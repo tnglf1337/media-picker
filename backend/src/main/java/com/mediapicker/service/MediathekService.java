@@ -158,4 +158,34 @@ public class MediathekService {
     log.info("Medium " + medium + " wurde dekrementiert.");
     return true;
   }
+
+  public void inkrementMediumRating(UUID mediumId) {
+    Mediathek mediathek = findMediathekByUser();
+    List<Medium> l = mediathek.getMediaListe();
+
+    Optional<Medium> medium = l.stream().filter(m -> m.getMediumId().equals(mediumId)).findFirst();
+
+    if (medium.isPresent()) {
+      medium.get().inkrementRating();
+      mediathekDao.save(mediathek);
+      log.info("Rating für Medium " + medium.get() + " wurde inkrementiert.");
+    } else {
+      log.error("Medium mit ID " + mediumId + " nicht gefunden.");
+    }
+  }
+
+  public void dekrementMediumRating(UUID mediumId) {
+    Mediathek mediathek = findMediathekByUser();
+    List<Medium> l = mediathek.getMediaListe();
+
+    Optional<Medium> medium = l.stream().filter(m -> m.getMediumId().equals(mediumId)).findFirst();
+
+    if (medium.isPresent()) {
+      medium.get().dekrementRating();
+      mediathekDao.save(mediathek);
+      log.info("Rating für Medium " + medium.get() + " wurde inkrementiert.");
+    } else {
+      log.error("Medium mit ID " + mediumId + " nicht gefunden.");
+    }
+  }
 }

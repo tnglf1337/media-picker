@@ -53,4 +53,16 @@ public class MediathekController {
     mediathekService.dekrementMedium(mediumId);
     return ResponseEntity.ok().build();
   }
+
+  @GetMapping("/medium-rating-inkrement/{mediumId}")
+  public ResponseEntity<Void> mediumRatingInkrementieren(@PathVariable UUID mediumId) {
+    mediathekService.inkrementMediumRating(mediumId);
+    return ResponseEntity.ok().build();
+  }
+
+  @GetMapping("/medium-rating-dekrement/{mediumId}")
+  public ResponseEntity<Void> mediumRatingDekrementieren(@PathVariable UUID mediumId) {
+    mediathekService.dekrementMediumRating(mediumId);
+    return ResponseEntity.ok().build();
+  }
 }
