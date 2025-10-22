@@ -47,6 +47,18 @@ public class Medium {
     this.notiz = notiz;
   }
 
+  public void inkrementRating() {
+    if (this.rating < 10) {
+      this.rating += 1;
+    }
+  }
+
+  public void dekrementRating() {
+    if (this.rating > 0) {
+      this.rating -= 1;
+    }
+  }
+
   public void notizHinzufuegen(String notiz) {
     this.notiz.add(notiz);
   }
