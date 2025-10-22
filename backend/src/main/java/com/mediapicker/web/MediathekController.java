@@ -6,6 +6,7 @@ import com.mediapicker.service.MediathekService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -29,9 +30,9 @@ public class MediathekController {
     return ResponseEntity.ok(medien);
   }
 
-  @DeleteMapping("/medium-loeschen")
-  public ResponseEntity<Void> mediumLoeschen() {
-    // TODO implement
+  @DeleteMapping("/medium-loeschen/{mediumId}")
+  public ResponseEntity<Void> mediumLoeschen(@PathVariable UUID mediumId) {
+    mediathekService.deleteByMediumId(mediumId);
     return null;
   }
 
