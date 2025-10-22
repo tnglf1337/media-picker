@@ -43,6 +43,14 @@ public class Manga extends Medium {
     return false;
   }
 
+  public boolean dekrementCurrentKapitel() {
+    if (currentKapitel - 1 >= 0) {
+      this.currentKapitel--;
+      return true;
+    }
+    return false;
+  }
+
   public Integer getBand() {
     return band;
   }

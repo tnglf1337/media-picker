@@ -43,6 +43,14 @@ public class Serie extends Medium {
     return false;
   }
 
+  public boolean dekrementCurrentFolge() {
+    if (currentFolge - 1 >= 0) {
+      this.currentFolge--;
+      return true;
+    }
+    return false;
+  }
+
   public Integer getSeason() {
     return season;
   }

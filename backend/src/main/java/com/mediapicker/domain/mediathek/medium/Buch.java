@@ -41,6 +41,14 @@ public class Buch extends Medium {
     return false;
   }
 
+  public boolean dekrementCurrentSeite() {
+    if (currentSeite - 1 >= 0) {
+      this.currentSeite--;
+      return true;
+    }
+    return false;
+  }
+
   public Integer getSeiten() {
     return seiten;
   }

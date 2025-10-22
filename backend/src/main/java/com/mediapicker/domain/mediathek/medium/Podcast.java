@@ -41,6 +41,14 @@ public class Podcast extends Medium {
     return false;
   }
 
+  public boolean dekrementCurrentKapitel() {
+    if (currentKapitel - 1 >= 0) {
+      this.currentKapitel--;
+      return true;
+    }
+    return false;
+  }
+
   public Integer getKapitel() {
     return kapitel;
   }
