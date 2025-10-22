@@ -33,13 +33,34 @@
               </ng-container>
               <ng-container *ngIf="mediumTyp == MediumTyp.MANGA">
                 <td class="medien-table-td border-b">Band {{ medium.band }}</td>
-                <td class="medien-table-td border-b">Kapitel: {{ medium.currentKapitel }}/{{medium.kapitel}}</td>
+                <td class="medien-table-td border-b">
+                  <div class="update-wrapper">
+                    <p>Kapitel:</p>
+                    <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
+                    <span>{{ medium.currentKapitel }}/{{medium.kapitel}}</span>
+                    <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
+                  </div>
+                </td>
               </ng-container>
               <ng-container *ngIf="mediumTyp == MediumTyp.BUCH">
-                <td class="medien-table-td border-b" >Seite: {{ medium.currentSeite }}/{{medium.seiten}}</td>
+                <td class="medien-table-td border-b">
+                  <div class="update-wrapper">
+                    <p>Seite:</p>
+                    <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
+                    <span>{{ medium.currentSeite }}/{{medium.seiten}}</span>
+                    <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
+                  </div>
+                </td>
               </ng-container>
               <ng-container *ngIf="mediumTyp == MediumTyp.PODCAST">
-                <td class="medien-table-td border-b">Kapitel: {{ medium.currentKapitel }}/{{medium.kapitel}}</td>
+                <td class="medien-table-td border-b">
+                  <div class="update-wrapper">
+                    <p>Kapitel:</p>
+                    <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
+                    <span>{{ medium.currentKapitel }}/{{medium.kapitel}}</span>
+                    <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
+                  </div>
+                </td>
               </ng-container>
               <td class="medien-table-td border-b">{{medium.rating}}/10</td>
               <td class=" medien-table-td border-b">{{medium.erstelltAm | date:'dd.MM.yyyy':'':'de'}}</td>
