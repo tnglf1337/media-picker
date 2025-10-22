@@ -45,6 +45,12 @@ public class MediathekController {
   @GetMapping("/medium-inkrement/{mediumId}")
   public ResponseEntity<Void> mediumInkrementieren(@PathVariable UUID mediumId) {
     mediathekService.inkrementMedium(mediumId);
-    return null;
+    return ResponseEntity.ok().build();
+  }
+
+  @GetMapping("/medium-dekrement/{mediumId}")
+  public ResponseEntity<Void> mediumDekrementieren(@PathVariable UUID mediumId) {
+    mediathekService.dekrementMedium(mediumId);
+    return ResponseEntity.ok().build();
   }
 }
