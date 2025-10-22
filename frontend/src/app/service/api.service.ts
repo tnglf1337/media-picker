@@ -56,6 +56,6 @@ export class MediumApiService {
   }
 
   deleteMedium(mediumId: string) : Observable<any> {
-    return this.http.delete<any>(this.BASE_URL + '/delete-medium/' + mediumId);
+    return this.http.delete<any>(this.BASE_URL + '/medium-loeschen/' + mediumId);
   }
 }
