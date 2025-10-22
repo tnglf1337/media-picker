@@ -18,9 +18,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.util.ReflectionTestUtils;
-
 import java.util.List;
-
+import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
@@ -42,7 +41,17 @@ public class MediathekServiceTest {
 
   MediathekService service;
 
-  String USERNAME = "testuser";
+  static String USERNAME = "testuser";
+
+  static User user;
+
+  static Mediathek mediathek;
+
+  @BeforeAll
+  static void setUp() {
+    user = UserMother.initTestUser(USERNAME);
+    mediathek = MediathekMother.initFullMediathek(user);
+  }
 
   @BeforeEach
   void setup() {
@@ -53,8 +62,6 @@ public class MediathekServiceTest {
   @Test
   @DisplayName("Alle Serien aus einer Mediathek werden gefunden")
   void test1() {
-    User user = UserMother.initTestUser(USERNAME);
-    Mediathek mediathek = MediathekMother.initFullMediathek(user);
     mediathekDao.save(mediathek);
 
     List<Serie> actual = service.findAllbyTyp(Serie.class);
@@ -65,8 +72,6 @@ public class MediathekServiceTest {
   @Test
   @DisplayName("Alle Videospiele aus einer Mediathek werden gefunden")
   void test2() {
-    User user = UserMother.initTestUser(USERNAME);
-    Mediathek mediathek = MediathekMother.initFullMediathek(user);
     mediathekDao.save(mediathek);
 
     List<Videospiel> actual = service.findAllbyTyp(Videospiel.class);
@@ -74,6 +79,18 @@ public class MediathekServiceTest {
     assertThat(actual).hasSize(2);
   }
 
+  @Test
+  @DisplayName("Ein Film wird aus der Mediathek gelöscht")
+  void test3() {
+    int sizeBefore = mediathek.getMediaListe().size();
+    mediathekDao.save(mediathek);
+    Mediathek mediathek2 = mediathekDao.findByUser(user);
+    UUID mediumIdToDelete = mediathek2.getMediaListe().get(2).getMediumId();
 
+    boolean success = service.deleteByMediumId(mediumIdToDelete);
 
+    Mediathek mediathekAfter = mediathekDao.findByUser(user);
+    assertThat(mediathekAfter.getMediaListe()).hasSize(sizeBefore - 1);
+    assertThat(success).isTrue();
+  }
 }

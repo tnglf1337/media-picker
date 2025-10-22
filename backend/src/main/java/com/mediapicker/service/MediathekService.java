@@ -10,6 +10,7 @@ import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -70,5 +71,20 @@ public class MediathekService {
       case PODCAST -> findAllbyTyp(Podcast.class);
       default -> List.of();
     };
+  }
+
+  public boolean deleteByMediumId(UUID mediumId) {
+    Mediathek mediathek = findMediathekByUser();
+    List<Medium> l = mediathek.getMediaListe();
+
+    l.removeIf(m -> m.getMediumId().equals(mediumId));
+
+    try {
+      mediathekDao.save(mediathek);
+      return true;
+    } catch (IllegalArgumentException | OptimisticLockingFailureException e) {
+      System.out.println(e.getMessage());
+      return false;
+    }
   }
 }
