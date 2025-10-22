@@ -1,5 +1,6 @@
 package com.mediapicker.web;
 
+import com.mediapicker.db.DummyDb;
 import com.mediapicker.domain.mediathek.Mediathek;
 import com.mediapicker.domain.user.User;
 import com.mediapicker.service.MediathekService;
@@ -31,7 +32,7 @@ public class OfflineAppRegister {
         "1234",
         "default@default.de"
       );
-      Mediathek mediathek = new Mediathek(null, user, null);
+      Mediathek mediathek = DummyDb.initMediathek(user);
       mediathekService.save(mediathek);
       log.info("Mediathek für DEFAULT_USER '%s' erstellt.".formatted(DEFAULT_USER));
     }
