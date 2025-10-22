@@ -5,6 +5,8 @@ import com.mediapicker.db.UserDao;
 import com.mediapicker.domain.mediathek.Mediathek;
 import com.mediapicker.domain.mediathek.medium.*;
 import com.mediapicker.domain.user.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class MediathekService {
+
+  private static final Logger log = LoggerFactory.getLogger(MediathekService.class);
 
   @Value("${app.offline.default.username}")
   private String username;
@@ -38,8 +42,10 @@ public class MediathekService {
     mediathek.mediumHinzufügen(medium);
     try {
       mediathekDao.save(mediathek);
+      log.info("Neues Medium hinzugefügt: " + medium);
       return true;
     } catch (IllegalArgumentException | OptimisticLockingFailureException e) {
+      log.error("Fehler beim Hinzufügen des Mediums: " + medium);
       System.out.println(e.getMessage());
       return false;
     }
@@ -81,8 +87,10 @@ public class MediathekService {
 
     try {
       mediathekDao.save(mediathek);
+      log.info("Medium mit ID " + mediumId + " wurde gelöscht.");
       return true;
     } catch (IllegalArgumentException | OptimisticLockingFailureException e) {
+      log.error("Fehler beim Löschen des Mediums mit ID " + mediumId);
       System.out.println(e.getMessage());
       return false;
     }
