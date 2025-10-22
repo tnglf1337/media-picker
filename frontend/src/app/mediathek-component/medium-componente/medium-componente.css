@@ -1,11 +1,11 @@
 .border-r {
-  border: 2px solid red;
+  border: 2px solid red !important;
   padding: 2px;
   margin: 2px;
 }
 
 .border-b {
-  border: 1px solid blue;
+  border: 1px solid blue !important;
   padding: 1px;
   margin: 1px;
 }
@@ -44,6 +44,32 @@
   text-align: center;
   vertical-align: center;
   width: 10%;
+}
+
+.medien-table-loeschen-td {
+  width: 2.5%;
+}
+
+.loeschen-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loeschen-btn {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loeschen-btn:hover {
+  cursor: pointer;
+}
+
+.loeschen-svg:hover {
+  fill: #ff5c5c;
 }
 
 .flex-v-align {
