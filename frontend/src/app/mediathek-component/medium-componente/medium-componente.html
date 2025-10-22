@@ -62,7 +62,14 @@
                   </div>
                 </td>
               </ng-container>
-              <td class="medien-table-td border-b">{{medium.rating}}/10</td>
+              <td class="medien-table-td border-b">
+                <div class="update-wrapper">
+                  <p>Rating:</p>
+                  <button class="decrement-btn" (click)="dekrementRating(medium.mediumId)">-</button>
+                  <span>{{medium.rating}}/10</span>
+                  <button class="inkrement-btn" (click)="inkrementRating(medium.mediumId)">+</button>
+                </div>
+              </td>
               <td class=" medien-table-td border-b">{{medium.erstelltAm | date:'dd.MM.yyyy':'':'de'}}</td>
               <td class="medien-table-loeschen-td">
                 <div class="loeschen-btn-container">
