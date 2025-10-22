@@ -80,7 +80,11 @@ export class MediumComponente implements OnInit{
   protected readonly Status = Status;
 
   dekrementMedium(mediumId: string) {
-    this.mediumApiService.sendDecrementMedium(mediumId).subscribe({});
+    this.mediumApiService.sendDecrementMedium(mediumId).subscribe({
+      next: () => {
+        this.ngOnInit()
+      }
+    });
   }
 
   inkrementMedium(mediumId: string) {
