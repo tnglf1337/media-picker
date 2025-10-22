@@ -58,4 +58,12 @@ export class MediumApiService {
   deleteMedium(mediumId: string) : Observable<any> {
     return this.http.delete<any>(this.BASE_URL + '/medium-loeschen/' + mediumId);
   }
+
+  sendDecrementMedium(mediumId: string): Observable<any> {
+    return this.http.get<any>(this.BASE_URL + '/medium-dekrement/' + mediumId);
+  }
+
+  sendIncrementMedium(mediumId: string) {
+    return this.http.get<any>(this.BASE_URL + '/medium-inkrement/' + mediumId);
+  }
 }

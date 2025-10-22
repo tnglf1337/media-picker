@@ -22,7 +22,14 @@
               </ng-container>
               <ng-container *ngIf="mediumTyp == MediumTyp.SERIE || mediumTyp == MediumTyp.ANIME">
                 <td class="medien-table-td border-b">Staffel {{ medium.season }}</td>
-                <td class="medien-table-td border-b">Folgen: {{ medium.currentFolge }}/{{ medium.folgen }}</td>
+                <td class="medien-table-td border-b">
+                  <div class="update-wrapper">
+                    <p>Folgen:</p>
+                    <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
+                    <span>{{ medium.currentFolge }}/{{ medium.folgen }}</span>
+                    <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
+                  </div>
+                </td>
               </ng-container>
               <ng-container *ngIf="mediumTyp == MediumTyp.MANGA">
                 <td class="medien-table-td border-b">Band {{ medium.band }}</td>

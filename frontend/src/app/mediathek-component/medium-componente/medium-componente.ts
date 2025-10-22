@@ -78,4 +78,12 @@ export class MediumComponente implements OnInit{
   protected readonly MediumTyp = MediumTyp;
   protected readonly Object = Object;
   protected readonly Status = Status;
+
+  dekrementMedium(mediumId: string) {
+    this.mediumApiService.sendDecrementMedium(mediumId).subscribe({});
+  }
+
+  inkrementMedium(mediumId: string) {
+    this.mediumApiService.sendIncrementMedium(mediumId).subscribe({});
+  }
 }
