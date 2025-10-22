@@ -62,6 +62,14 @@ export class MediumComponente implements OnInit{
     return this.medien.filter(medien => medien.status === status)
   }
 
+  mediumLoeschen(mediumId : string) {
+    this.mediumApiService.deleteMedium(mediumId).subscribe({
+      next: res => {
+        console.log("Medium erfolgreich gelöscht")
+      }
+    });
+  }
+
   openFormModal() {
     this.openFormModalSignal.update(v => true)
   }

@@ -54,4 +54,8 @@ export class MediumApiService {
   getMedienByMediumTyp(mediumTyp: MediumTyp) : Observable<Medium[]> {
     return this.http.get<Medium[]>(this.BASE_URL + '/get-medien-by-typ/' + MediumTyp[mediumTyp]);
   }
+
+  deleteMedium(mediumId: string) : Observable<any> {
+    return this.http.delete<any>(this.BASE_URL + '/delete-medium/' + mediumId);
+  }
 }
