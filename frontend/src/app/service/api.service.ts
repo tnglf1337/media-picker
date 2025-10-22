@@ -66,4 +66,12 @@ export class MediumApiService {
   sendIncrementMedium(mediumId: string) {
     return this.http.get<any>(this.BASE_URL + '/medium-inkrement/' + mediumId);
   }
+
+  sendDecrementRating(mediumId: string) {
+    return this.http.get<any>(this.BASE_URL + '/medium-rating-dekrement/' + mediumId);
+  }
+
+  sendIncrementRating(mediumId: string) {
+    return this.http.get<any>(this.BASE_URL + '/medium-rating-inkrement/' + mediumId);
+  }
 }

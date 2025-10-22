@@ -94,4 +94,20 @@ export class MediumComponente implements OnInit{
       }
     });
   }
+
+  dekrementRating(mediumId: string) {
+    this.mediumApiService.sendDecrementRating(mediumId).subscribe({
+      next: () => {
+        this.ngOnInit()
+      }
+    });
+  }
+
+  inkrementRating(mediumId: string) {
+    this.mediumApiService.sendIncrementRating(mediumId).subscribe({
+      next: () => {
+        this.ngOnInit()
+      }
+    });
+  }
 }
