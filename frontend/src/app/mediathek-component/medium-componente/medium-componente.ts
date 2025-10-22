@@ -84,6 +84,10 @@ export class MediumComponente implements OnInit{
   }
 
   inkrementMedium(mediumId: string) {
-    this.mediumApiService.sendIncrementMedium(mediumId).subscribe({});
+    this.mediumApiService.sendIncrementMedium(mediumId).subscribe({
+      next: () => {
+        this.ngOnInit()
+      }
+    });
   }
 }
