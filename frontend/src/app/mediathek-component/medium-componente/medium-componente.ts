@@ -66,6 +66,7 @@ export class MediumComponente implements OnInit{
     this.mediumApiService.deleteMedium(mediumId).subscribe({
       next: res => {
         console.log("Medium erfolgreich gelöscht")
+        this.ngOnInit()
       }
     });
   }
