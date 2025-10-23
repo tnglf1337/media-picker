@@ -188,4 +188,10 @@ public class MediathekService {
       log.error("Medium mit ID " + mediumId + " nicht gefunden.");
     }
   }
+
+  public List<? extends Medium> findAllCurrentMedien() {
+    return findMediathekByUser().getMediaListe().stream()
+      .filter(Medium::isCurrentlyConsuming)
+      .collect(Collectors.toList());
+  }
 }

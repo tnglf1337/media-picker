@@ -122,4 +122,14 @@ public class MediathekServiceTest {
     Serie inkrementiertesMedium = (Serie) mediathekAfter.getMediaListe().get(5);
     assertThat(inkrementiertesMedium.getCurrentFolge()).isEqualTo(12);
   }
+
+  @Test
+  @DisplayName("Alle Medien mit einem Status 'AM_...' werden aus der Mediatek eines Users gefunden")
+  void test6() {
+    mediathekDao.save(mediathek);
+
+    List<? extends Medium> actual = service.findAllCurrentMedien();
+
+    assertThat(actual).hasSize(5);
+  }
 }
