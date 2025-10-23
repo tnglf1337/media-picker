@@ -34,18 +34,19 @@
         <div id="next-container" class="border-b">
           <div class="border-r">
             <!-- TODO: hier soll noch so ein Würfel-Icon sein-->
-            <button id="next-media-btn">Was als nächstes?</button>
+            <button id="next-media-btn" (click)="wuerfelCurrentMedien()">Was als nächstes?</button>
           </div>
           <div id="gewaehltes-medium-container"  class="border-r">
-            <!-- TODO: Hier soll dann ein Medium ausgewählt werden, das mindestens für den Status "GEPLANT" gesetzt ist
-                       Der User soll die benutzten Stati selber konfigurieren können.
-            -->
-            <div class="border-b">
-              <p><span>Dead by Daylight</span></p>
-            </div>
-            <div class="border-b">
-              <button id="akzeptieren-btn" title="Medium X aktiv markieren">&#10003;</button>
-            </div>
+            <ng-container *ngIf="randomMedium != null">
+              <div class="border-b">
+                <p><span>{{randomMedium.titel}}</span></p>
+              </div>
+              <!-- TODO: Es sollen hier noch später die Medien gewürfelt werden können, die auf GEPLANT sind, maybe neuer Button dafür
+              <div class="border-b">
+                <button id="akzeptieren-btn" title="Medium X aktiv markieren">&#10003;</button>
+              </div>
+              -->
+            </ng-container>
           </div>
         </div>
       </section>
