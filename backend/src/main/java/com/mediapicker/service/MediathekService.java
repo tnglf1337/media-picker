@@ -12,6 +12,7 @@ import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -189,9 +190,13 @@ public class MediathekService {
     }
   }
 
-  public List<? extends Medium> findAllCurrentMedien() {
-    return findMediathekByUser().getMediaListe().stream()
-      .filter(Medium::isCurrentlyConsuming)
-      .collect(Collectors.toList());
+  @SuppressWarnings("unchecked")
+  public Map<MediumTyp, List<? extends Medium>> findAllCurrentMedien() {
+    return (Map<MediumTyp, List<? extends Medium>>)
+      (Map<?, ?>) findMediathekByUser()
+        .getMediaListe()
+        .stream()
+        .filter(Medium::isCurrentlyConsuming)
+        .collect(Collectors.groupingBy(Medium::getMediumTyp));
   }
 }

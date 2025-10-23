@@ -4,6 +4,7 @@ import com.mediapicker.db.MediathekDao;
 import com.mediapicker.db.UserDao;
 import com.mediapicker.domain.mediathek.Mediathek;
 import com.mediapicker.domain.mediathek.medium.Medium;
+import com.mediapicker.domain.mediathek.medium.MediumTyp;
 import com.mediapicker.domain.mediathek.medium.Serie;
 import com.mediapicker.domain.mediathek.medium.Videospiel;
 import com.mediapicker.domain.user.User;
@@ -20,6 +21,7 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.util.ReflectionTestUtils;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -128,8 +130,12 @@ public class MediathekServiceTest {
   void test6() {
     mediathekDao.save(mediathek);
 
-    List<? extends Medium> actual = service.findAllCurrentMedien();
+    Map<MediumTyp, List<? extends Medium>> actual = service.findAllCurrentMedien();
 
-    assertThat(actual).hasSize(5);
+    assertThat(actual).hasSize(4);
+    assertThat(actual.get(MediumTyp.ANIME)).hasSize(1);
+    assertThat(actual.get(MediumTyp.MANGA)).hasSize(1);
+    assertThat(actual.get(MediumTyp.PODCAST)).hasSize(1);
+    assertThat(actual.get(MediumTyp.VIDEOSPIEL)).hasSize(2);
   }
 }
