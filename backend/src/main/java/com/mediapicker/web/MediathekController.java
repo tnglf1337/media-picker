@@ -30,6 +30,12 @@ public class MediathekController {
     return ResponseEntity.ok(medien);
   }
 
+  @GetMapping("/get-current-medien")
+  public ResponseEntity<List<? extends Medium>> getCurrentMedien() {
+    List<? extends Medium> medien = mediathekService.findAllCurrentMedien();
+    return ResponseEntity.ok(medien);
+  }
+
   @DeleteMapping("/medium-loeschen/{mediumId}")
   public ResponseEntity<Void> mediumLoeschen(@PathVariable UUID mediumId) {
     mediathekService.deleteByMediumId(mediumId);
