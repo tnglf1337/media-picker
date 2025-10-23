@@ -59,6 +59,13 @@ public class Medium {
     }
   }
 
+  public boolean isCurrentlyConsuming() {
+    return this.status == Status.AM_SCHAUEN ||
+      this.status == Status.AM_LESEN ||
+      this.status == Status.AM_SPIELEN ||
+      this.status == Status.AM_HOEREN;
+  }
+
   public void notizHinzufuegen(String notiz) {
     this.notiz.add(notiz);
   }
