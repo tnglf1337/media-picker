@@ -19,7 +19,7 @@
         <div class="mb-3">
           <label for="status" class="form-label">Status</label>
           <select  class="form-control" id="status" formControlName="status">
-            <option *ngFor="let status of statusOptionen">{{status | statusTransform}}</option>
+            <option *ngFor="let status of statusOptionen" [value]="status">{{status | statusTransform}}</option>
           </select>
           <small class="text-danger"
                  *ngIf="mediumForm.getPrimaerForm().controls['status'].errors?.['required'] && mediumForm.getPrimaerForm().controls['status'].touched">
@@ -80,7 +80,7 @@
           <div class="mb-3">
             <label for="platform" class="form-label">Platform</label>
             <select type="text" class="form-control" id="platform" formControlName="platform">
-              <option *ngFor="let platform of platforms">{{platform | platformTransform}}</option>
+              <option *ngFor="let platform of platforms" [value]="platform">{{platform | platformTransform}}</option>
             </select>
             <small class="text-danger"
                    *ngIf="mediumForm.getSekundaerForm().controls['platform'].errors?.['required'] && mediumForm.getSekundaerForm().controls['platform'].touched">
