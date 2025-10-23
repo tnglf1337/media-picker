@@ -25,14 +25,15 @@ export enum Platform {
 
 // ##### KLASSEN #####
 export class Medium {
+
   constructor(
-    private mediumId? : string | null,
-    private erstelltAm? : string,
-    private titel? : string,
-    private mediumTyp? : MediumTyp,
-    private status? : Status,
-    private rating? : number,
-    private notiz? : string[]
+    public mediumId? : string | null,
+    public erstelltAm? : string,
+    public titel? : string,
+    public mediumTyp? : MediumTyp,
+    public status? : Status,
+    public rating? : number,
+    public notiz? : string[]
     ) {
   }
 }
