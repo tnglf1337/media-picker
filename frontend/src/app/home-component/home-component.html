@@ -3,26 +3,27 @@
     <div>
       <h3>Currently enjoying</h3>
       <!-- TODO: die divs später dynamisch rendern und aus dem Backend eine Map<String, List<String>> erstellen-->
-      <div>
-        <p>Serien</p>
+      <div *ngFor="let entry of currentMedien | keyvalue">
+        <h3>{{ entry.key }}</h3>
+
         <ul>
-          <li>Alien Earth</li>
-          <li>Squid Game 2</li>
-        </ul>
-      </div>
-      <div>
-        <p>Videospiele</p>
-        <ul>
-          <li>Persona 3</li>
-        </ul>
-      </div>
-      <div>
-        <p>Anime</p>
-        <ul>
-          <li>Berserk</li>
-          <li>One Piece</li>
-          <li>Sailor Moon</li>
-          <li><p>LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG NAME</p></li>
+          <li *ngFor="let medium of entry.value">
+            <ng-container *ngIf="entry.key == 'SERIE' || entry.key == 'ANIME'">
+              {{ medium.titel }} - Folge {{ medium.currentFolge }}/{{ medium.folgen }}
+            </ng-container>
+            <ng-container *ngIf="entry.key == 'FILM'">
+              {{ medium.titel }}
+            </ng-container>
+            <ng-container *ngIf="entry.key == 'MANGA' || entry.key == 'PODCAST'">
+              {{ medium.titel }} - Kapitel {{ medium.currentKapitel }}/{{ medium.kapitel }}
+            </ng-container>
+            <ng-container *ngIf="entry.key == 'VIDEOSPIEL'">
+              {{ medium.titel }} ({{ medium.platform }})
+            </ng-container>
+            <ng-container *ngIf="entry.key == 'BUCH'">
+              {{ medium.titel }} - Seite {{ medium.currentSeite }}/{{ medium.seiten }}
+            </ng-container>
+          </li>
         </ul>
       </div>
     </div>

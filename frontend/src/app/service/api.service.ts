@@ -74,4 +74,8 @@ export class MediumApiService {
   sendIncrementRating(mediumId: string) {
     return this.http.get<any>(this.BASE_URL + '/medium-rating-inkrement/' + mediumId);
   }
+
+  getCurrentMedien() : Observable<{ [key: string]: any[] }> {
+    return this.http.get<{ [key: string]: any[] }>(this.BASE_URL + '/get-current-medien');
+  }
 }
