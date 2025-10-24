@@ -3,13 +3,14 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Anime, Buch, Film, Manga, Medium, MediumTyp, Podcast, Serie, Videospiel} from '../domain/medium';
 import {Mediathek} from '../domain/mediathek';
+import {MediathekStatistik} from '../home-component/statistik-component/statistik-component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MediumApiService {
   BASE_URL = "http://localhost:9756"
-  BASE_URL_ERSTELLEN = "http://localhost:9756/medium-erstellen"
+  BASE_URL_ERSTELLEN = this.BASE_URL + "/medium-erstellen"
 
   constructor(private http: HttpClient) { }
 
@@ -77,5 +78,9 @@ export class MediumApiService {
 
   getCurrentMedien() : Observable<{ [key: string]: any[] }> {
     return this.http.get<{ [key: string]: any[] }>(this.BASE_URL + '/get-current-medien');
+  }
+
+  getStatistiken() : Observable<MediathekStatistik> {
+    return this.http.get<MediathekStatistik>(this.BASE_URL + '/get-mediathek-statistiken');
   }
 }
