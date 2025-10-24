@@ -25,13 +25,13 @@ export interface MediathekStatistik {
 export class StatistikComponent implements OnInit{
 
   apiService : MediumApiService = inject(MediumApiService)
-  statistikData! : MediathekStatistik;
+  mediathekStatistik! : MediathekStatistik;
 
   ngOnInit(): void {
     this.apiService.getStatistiken().subscribe({
       next: data => {
-        this.statistikData = data;
-        console.log("Statistik data loaded: ", this.statistikData);
+        this.mediathekStatistik = data;
+        console.log("Statistik data loaded: ", this.mediathekStatistik);
       }
     })
   }
