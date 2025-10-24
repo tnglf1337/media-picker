@@ -3,6 +3,8 @@ package com.mediapicker.web;
 import com.mediapicker.domain.mediathek.Mediathek;
 import com.mediapicker.domain.mediathek.medium.*;
 import com.mediapicker.service.MediathekService;
+import com.mediapicker.service.MediathekStatistikService;
+import com.mediapicker.web.response.MediathekStatistikResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -13,10 +15,12 @@ import java.util.UUID;
 @RestController
 public class MediathekController {
 
-  private MediathekService mediathekService;
+  private final MediathekService mediathekService;
+  private final MediathekStatistikService mediathekStatistikService;
 
-  public MediathekController(MediathekService mediathekService) {
+  public MediathekController(MediathekService mediathekService, MediathekStatistikService mediathekStatistikService) {
     this.mediathekService = mediathekService;
+    this.mediathekStatistikService = mediathekStatistikService;
   }
 
   @GetMapping("/user-medien")
@@ -71,5 +75,11 @@ public class MediathekController {
   public ResponseEntity<Void> mediumRatingDekrementieren(@PathVariable UUID mediumId) {
     mediathekService.dekrementMediumRating(mediumId);
     return ResponseEntity.ok().build();
+  }
+
+  @GetMapping("/get-mediathek-statistiken")
+  public ResponseEntity<MediathekStatistikResponseDto> getMediathekStatistiken() {
+    MediathekStatistikResponseDto resp = mediathekStatistikService.getMediathekStatistik();
+    return ResponseEntity.ok(resp);
   }
 }
