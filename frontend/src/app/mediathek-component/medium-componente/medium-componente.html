@@ -10,9 +10,10 @@
   <section>
     <ng-container *ngFor="let status of Object.values(Status)">
       <ng-container *ngIf="medienFilteredByStatus(status).length != 0">
-        <h4 class="table-header">{{status | statusTransform}}</h4>
-        <table class="table">
-          <tbody>
+        <div class="medien-filter-container">
+          <h4 class="table-header">{{status | statusTransform}}</h4>
+          <table class="table">
+            <tbody>
             <tr *ngFor="let medium of medienFilteredByStatus(status)">
               <ng-container *ngIf="medium.length != 0">
                 <!-- TITEL -->
@@ -101,8 +102,9 @@
                 </td>
               </ng-container>
             </tr>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </ng-container>
     </ng-container>
   </section>
