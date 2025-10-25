@@ -49,7 +49,7 @@ public class MediumDaoTest {
 
     Mediathek fromDb = dao.findById(mediathek.getMediathekId()).orElseThrow();
     assertThat(fromDb.getMediathekId()).isNotNull();
-    assertThat(fromDb.getMediaListe()).hasSize(7);
+    assertThat(fromDb.getMediaListe()).hasSize(8);
     assertThat(fromDb.getUser().getUserId()).isNotNull();
   }
 
@@ -68,7 +68,7 @@ public class MediumDaoTest {
 
     Mediathek fromDbAfter = dao.findById(fromDbBefore.getMediathekId()).orElseThrow();
 
-    assertThat(sizeBeforeAdd).isEqualTo(7);
+    assertThat(sizeBeforeAdd).isEqualTo(8);
     assertThat(fromDbAfter.getMediaListe()).hasSize(sizeBeforeAdd + 1);
   }
 
@@ -86,7 +86,7 @@ public class MediumDaoTest {
     dao.save(fromDbBefore);
     Mediathek fromDbAfter = dao.findById(fromDbBefore.getMediathekId()).orElseThrow();
 
-    assertThat(sizeBeforeRemove).isEqualTo(7);
+    assertThat(sizeBeforeRemove).isEqualTo(8);
     assertThat(fromDbAfter.getMediaListe()).hasSize(sizeBeforeRemove - 1);
   }
 

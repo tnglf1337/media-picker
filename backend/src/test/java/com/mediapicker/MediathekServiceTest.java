@@ -20,6 +20,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.util.ReflectionTestUtils;
+
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -46,16 +47,6 @@ public class MediathekServiceTest {
 
   static String USERNAME = "testuser";
 
-  static User user;
-
-  static Mediathek mediathek;
-
-  @BeforeAll
-  static void setUp() {
-    user = UserMother.initTestUser(USERNAME);
-    mediathek = MediathekMother.initFullMediathek(user);
-  }
-
   @BeforeEach
   void setup() {
     service = new MediathekService(mediathekDao, userDao);
@@ -65,7 +56,9 @@ public class MediathekServiceTest {
   @Test
   @DisplayName("Alle Serien aus einer Mediathek werden gefunden")
   void test1() {
-    mediathekDao.save(mediathek);
+    User user = UserMother.initTestUser(USERNAME);
+    Mediathek mediathek = MediathekMother.initFullMediathek(user);
+    service.save(mediathek);
 
     List<Serie> actual = service.findAllbyTyp(Serie.class);
 
@@ -75,7 +68,9 @@ public class MediathekServiceTest {
   @Test
   @DisplayName("Alle Videospiele aus einer Mediathek werden gefunden")
   void test2() {
-    mediathekDao.save(mediathek);
+    User user = UserMother.initTestUser(USERNAME);
+    Mediathek mediathek = MediathekMother.initFullMediathek(user);
+    service.save(mediathek);
 
     List<Videospiel> actual = service.findAllbyTyp(Videospiel.class);
 
@@ -85,10 +80,14 @@ public class MediathekServiceTest {
   @Test
   @DisplayName("Ein Film wird aus der Mediathek gelöscht")
   void test3() {
-    int sizeBefore = mediathek.getMediaListe().size();
+    User user = UserMother.initTestUser(USERNAME);
+    Mediathek mediathek = MediathekMother.initFullMediathek(user);
     mediathekDao.save(mediathek);
-    Mediathek mediathek2 = mediathekDao.findByUser(user);
-    UUID mediumIdToDelete = mediathek2.getMediaListe().get(2).getMediumId();
+
+    // Frisches Entity aus der DB holen
+    Mediathek mediathekFromDb = mediathekDao.findByUser(user);
+    int sizeBefore = mediathekFromDb.getMediaListe().size();
+    UUID mediumIdToDelete = mediathekFromDb.getMediaListe().get(2).getMediumId();
 
     boolean success = service.deleteByMediumId(mediumIdToDelete);
 
@@ -100,7 +99,10 @@ public class MediathekServiceTest {
   @Test
   @DisplayName("Die currentFolge einer Serie wird erfolgreich inkrementiert")
   void test4() {
+    User user = UserMother.initTestUser(USERNAME);
+    Mediathek mediathek = MediathekMother.initFullMediathek(user);
     mediathekDao.save(mediathek);
+
     Mediathek mediathekBefore = mediathekDao.findByUser(user);
     UUID serieId = mediathekBefore.getMediaListe().get(5).getMediumId();
 
@@ -114,7 +116,10 @@ public class MediathekServiceTest {
   @Test
   @DisplayName("Die currentFolge einer Serie wird erfolgreich dekrementiert")
   void test5() {
+    User user = UserMother.initTestUser(USERNAME);
+    Mediathek mediathek = MediathekMother.initFullMediathek(user);
     mediathekDao.save(mediathek);
+
     Mediathek mediathekBefore = mediathekDao.findByUser(user);
     UUID serieId = mediathekBefore.getMediaListe().get(5).getMediumId();
 
@@ -128,6 +133,8 @@ public class MediathekServiceTest {
   @Test
   @DisplayName("Alle Medien mit einem Status 'AM_...' werden aus der Mediatek eines Users gefunden")
   void test6() {
+    User user = UserMother.initTestUser(USERNAME);
+    Mediathek mediathek = MediathekMother.initFullMediathek(user);
     mediathekDao.save(mediathek);
 
     Map<MediumTyp, List<? extends Medium>> actual = service.findAllCurrentMedien();
@@ -139,3 +146,4 @@ public class MediathekServiceTest {
     assertThat(actual.get(MediumTyp.VIDEOSPIEL)).hasSize(2);
   }
 }
+
