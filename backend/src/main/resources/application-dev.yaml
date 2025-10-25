@@ -14,6 +14,7 @@ spring:
         show_sql: false
 server:
   port: 9756
+  address: 0.0.0.0
 app:
   offline:
     default:
