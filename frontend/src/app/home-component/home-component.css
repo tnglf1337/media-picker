@@ -10,17 +10,37 @@
   margin: 2px;
 }
 
+:host {
+  --border-radius: 20px;
+  --container-bg: #f5f5f5;
+}
+
 #uebersicht-container {
   display: flex;
 }
 
+.card {
+  background-color: var(--container-bg);
+  border: 0 solid transparent;
+  border-radius: var(--border-radius);
+  padding: 20px;
+  margin: 20px;
+}
+
 #aktuelle-medien-container {
+  display: flex;
+  justify-content: space-between;
   width: 25%;
   min-width: 25%;
 }
 
+#aktuelle-medien-container-header {
+  color: #3f3f3f;
+  font-weight: bold;
+}
+
 #uebersicht-content-container {
-  min-width: 75%;
+  width: 100%;
 }
 
 #next-container {
@@ -29,11 +49,16 @@
 }
 
 #next-media-btn {
-  height: 60px;
-  background-color: whitesmoke;
-  border: 2px solid #32a3ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 40px;
+  width: 205px;
+  background-color: #3f3f3f;
+  border: 0 none transparent;
   border-radius: 5px;
-  color: black;
+  color: white;
 }
 
 #akzeptieren-btn {
@@ -54,6 +79,14 @@
   align-items: center;
 
   font-weight: bold;
+}
+
+#random-medium {
+  color: #efa800;
+}
+
+ul {
+  list-style-type: none;
 }
 
 @media (max-width: 800px) {

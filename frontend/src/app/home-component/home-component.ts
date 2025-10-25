@@ -3,10 +3,11 @@ import {MediumApiService} from '../service/api.service';
 import { CommonModule } from '@angular/common';
 import {RandomMediumService} from './random-medium.service';
 import {StatistikComponent} from './statistik-component/statistik-component';
+import {MediumTypPipe} from '../mediumtyp.pipe';
 
 @Component({
   selector: 'app-home-component',
-  imports: [CommonModule, StatistikComponent],
+  imports: [CommonModule, StatistikComponent, MediumTypPipe],
   templateUrl: './home-component.html',
   styleUrls: ['./home-component.css', '../../styles.css']
 })
