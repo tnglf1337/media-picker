@@ -16,7 +16,7 @@
             {{ medium.titel }} - Kapitel {{ medium.currentKapitel }}/{{ medium.kapitel }}
           </ng-container>
           <ng-container *ngIf="entry.key == 'VIDEOSPIEL'">
-            {{ medium.titel }} ({{ medium.platform }})
+            {{ medium.titel }} ({{ medium.platform | platformTransform }})
           </ng-container>
           <ng-container *ngIf="entry.key == 'BUCH'">
             {{ medium.titel }} - Seite {{ medium.currentSeite }}/{{ medium.seiten }}
