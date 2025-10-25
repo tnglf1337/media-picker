@@ -21,7 +21,7 @@
 
                 <!-- VIDEOSPIEL -->
                 <ng-container *ngIf="mediumTyp == MediumTyp.VIDEOSPIEL">
-                  <td class="medien-table-td">{{ medium.platform }}</td>
+                  <td class="medien-table-td">{{ medium.platform | platformTransform}}</td>
                 </ng-container>
 
                 <!-- SERIE ANIME -->

@@ -5,11 +5,12 @@ import {MediumErstellenForm} from './medium-erstellen-form/medium-erstellen-form
 import {MediumApiService} from '../../service/api.service';
 import {DatePipe, NgForOf, NgIf} from '@angular/common';
 import {StatusPipe} from '../../status.pipe';
+import {PlatformPipe} from '../../platform.pipe';
 
 
 @Component({
   selector: 'app-medium-componente',
-  imports: [MediumErstellenForm, NgForOf, NgIf, DatePipe, StatusPipe],
+  imports: [MediumErstellenForm, NgForOf, NgIf, DatePipe, StatusPipe, PlatformPipe],
   templateUrl: './medium-componente.html',
   styleUrl: './medium-componente.css'
 })
