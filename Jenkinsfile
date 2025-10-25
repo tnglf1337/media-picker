@@ -26,23 +26,15 @@ pipeline {
           }
         }
 
-        stage('Build backend project...') {
-        steps {
-          dir('backend') {
-              bat 'npm install'
-              bat 'npm run build'
-          }
-        }
-      }
-
-      stage('Build backend Docker Image...') {
-        steps {
-          dir('backend') {
-              bat "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
-              bat 'docker build -t tneskedev/media-picker-backend:latest .'
-              bat 'docker push tneskedev/media-picker-backend:latest'
-          }
-        }
+        stage('Build backend Docker Image...') {
+                steps {
+                  dir('backend') {
+                      bat "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
+                      bat 'docker build -t tneskedev/media-picker-backend:latest .'
+                      bat 'docker push tneskedev/media-picker-backend:latest'
+                  }
+                }
+              }
       }
     }
 }
