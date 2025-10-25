@@ -12,8 +12,8 @@ pipeline {
 
             steps {
                 dir('frontend') {
-                    sh 'npm install'
-                    sh 'npm run build'
+                    bat 'npm install'
+                    bat 'npm run build'
                 }
             }
         }
@@ -24,9 +24,9 @@ pipeline {
             }
             steps {
                 dir('frontend') {
-                    sh "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
-                    sh 'docker build -t tneskedev/media-picker-frontend:latest .'
-                    sh 'docker push tneskedev/media-picker-frontend:latest'
+                    bat "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
+                    bat 'docker build -t tneskedev/media-picker-frontend:latest .'
+                    bat 'docker push tneskedev/media-picker-frontend:latest'
                 }
             }
         }
@@ -38,8 +38,8 @@ pipeline {
 
                     steps {
                         dir('backend') {
-                            sh 'npm install'
-                            sh 'npm run build'
+                            bat 'npm install'
+                            bat 'npm run build'
                         }
                     }
                 }
@@ -50,9 +50,9 @@ pipeline {
                     }
                     steps {
                         dir('backend') {
-                            sh "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
-                            sh 'docker build -t tneskedev/media-picker-backend:latest .'
-                            sh 'docker push tneskedev/media-picker-backend:latest'
+                            bat "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
+                            bat 'docker build -t tneskedev/media-picker-backend:latest .'
+                            bat 'docker push tneskedev/media-picker-backend:latest'
                         }
                     }
                 }
