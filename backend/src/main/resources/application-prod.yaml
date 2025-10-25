@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/medium
+    url: jdbc:postgresql://medium-database:5432/medium
     username: "test"
     password: "1234"
     driver-class-name: org.postgresql.Driver
