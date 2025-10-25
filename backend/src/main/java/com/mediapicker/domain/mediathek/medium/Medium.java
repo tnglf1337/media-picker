@@ -11,7 +11,7 @@ import java.util.UUID;
 @Entity
 @Check(constraints = "rating >= 0 AND rating <= 10")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Medium {
+public class Medium implements Comparable<Medium> {
 
   @Id
   @GeneratedValue
@@ -124,5 +124,13 @@ public class Medium {
       ", rating=" + rating +
       ", notiz=" + notiz +
       '}';
+  }
+
+  @Override
+  public int compareTo(Medium o) {
+    if (this.titel == null && o.titel == null) return 0;
+    if (this.titel == null) return -1;
+    if (o.titel == null) return 1;
+    return this.titel.compareToIgnoreCase(o.titel);
   }
 }
