@@ -1,54 +1,55 @@
 <div id="uebersicht-container">
-  <section id="aktuelle-medien-container" class="border-r">
-    <div>
-      <h3>Currently enjoying</h3>
-      <!-- TODO: die divs später dynamisch rendern und aus dem Backend eine Map<String, List<String>> erstellen-->
-      <div *ngFor="let entry of currentMedien | keyvalue">
-        <h3>{{ entry.key }}</h3>
-
-        <ul>
-          <li *ngFor="let medium of entry.value">
-            <ng-container *ngIf="entry.key == 'SERIE' || entry.key == 'ANIME'">
-              {{ medium.titel }} - Folge {{ medium.currentFolge }}/{{ medium.folgen }}
-            </ng-container>
-            <ng-container *ngIf="entry.key == 'FILM'">
-              {{ medium.titel }}
-            </ng-container>
-            <ng-container *ngIf="entry.key == 'MANGA' || entry.key == 'PODCAST'">
-              {{ medium.titel }} - Kapitel {{ medium.currentKapitel }}/{{ medium.kapitel }}
-            </ng-container>
-            <ng-container *ngIf="entry.key == 'VIDEOSPIEL'">
-              {{ medium.titel }} ({{ medium.platform }})
-            </ng-container>
-            <ng-container *ngIf="entry.key == 'BUCH'">
-              {{ medium.titel }} - Seite {{ medium.currentSeite }}/{{ medium.seiten }}
-            </ng-container>
-          </li>
-        </ul>
+  <section id="aktuelle-medien-container" class="card">
+    <h3 id="aktuelle-medien-container-header">Currently enjoying</h3>
+    <!-- TODO: die divs später dynamisch rendern und aus dem Backend eine Map<String, List<String>> erstellen-->
+    <div *ngFor="let entry of currentMedien | keyvalue">
+      <h4>{{ entry.key | mediumTypTransform}}</h4>
+      <ul>
+        <li *ngFor="let medium of entry.value">
+          <ng-container *ngIf="entry.key == 'SERIE' || entry.key == 'ANIME'">
+            {{ medium.titel }} - Folge {{ medium.currentFolge }}/{{ medium.folgen }}
+          </ng-container>
+          <ng-container *ngIf="entry.key == 'FILM'">
+            {{ medium.titel }}
+          </ng-container>
+          <ng-container *ngIf="entry.key == 'MANGA' || entry.key == 'PODCAST'">
+            {{ medium.titel }} - Kapitel {{ medium.currentKapitel }}/{{ medium.kapitel }}
+          </ng-container>
+          <ng-container *ngIf="entry.key == 'VIDEOSPIEL'">
+            {{ medium.titel }} ({{ medium.platform | platformTransform }})
+          </ng-container>
+          <ng-container *ngIf="entry.key == 'BUCH'">
+            {{ medium.titel }} - Seite {{ medium.currentSeite }}/{{ medium.seiten }}
+          </ng-container>
+        </li>
+      </ul>
+    </div>
+    <div id="next-container">
+      <div>
+        <!-- TODO: hier soll noch so ein Würfel-Icon sein-->
+        <button id="next-media-btn" (click)="wuerfelCurrentMedien()">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M300-240q25 0 42.5-17.5T360-300q0-25-17.5-42.5T300-360q-25 0-42.5 17.5T240-300q0 25 17.5 42.5T300-240Zm0-360q25 0 42.5-17.5T360-660q0-25-17.5-42.5T300-720q-25 0-42.5 17.5T240-660q0 25 17.5 42.5T300-600Zm180 180q25 0 42.5-17.5T540-480q0-25-17.5-42.5T480-540q-25 0-42.5 17.5T420-480q0 25 17.5 42.5T480-420Zm180 180q25 0 42.5-17.5T720-300q0-25-17.5-42.5T660-360q-25 0-42.5 17.5T600-300q0 25 17.5 42.5T660-240Zm0-360q25 0 42.5-17.5T720-660q0-25-17.5-42.5T660-720q-25 0-42.5 17.5T600-660q0 25 17.5 42.5T660-600ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"/></svg>
+          <span>Was als nächstes?</span>
+        </button>
+      </div>
+      <div id="gewaehltes-medium-container">
+        <ng-container *ngIf="randomMedium != null">
+          <div>
+            <p id="random-medium"><span>{{randomMedium.titel}}</span></p>
+          </div>
+          <!-- TODO: Es sollen hier noch später die Medien gewürfelt werden können, die auf GEPLANT sind, maybe neuer Button dafür
+          <div class="border-b">
+            <button id="akzeptieren-btn" title="Medium X aktiv markieren">&#10003;</button>
+          </div>
+          -->
+        </ng-container>
       </div>
     </div>
   </section>
-  <section id="uebersicht-content-container" class="border-r">
+  <section id="uebersicht-content-container" class="card">
     <div>
       <section>
-        <div id="next-container" class="border-b">
-          <div class="border-r">
-            <!-- TODO: hier soll noch so ein Würfel-Icon sein-->
-            <button id="next-media-btn" (click)="wuerfelCurrentMedien()">Was als nächstes?</button>
-          </div>
-          <div id="gewaehltes-medium-container"  class="border-r">
-            <ng-container *ngIf="randomMedium != null">
-              <div class="border-b">
-                <p><span>{{randomMedium.titel}}</span></p>
-              </div>
-              <!-- TODO: Es sollen hier noch später die Medien gewürfelt werden können, die auf GEPLANT sind, maybe neuer Button dafür
-              <div class="border-b">
-                <button id="akzeptieren-btn" title="Medium X aktiv markieren">&#10003;</button>
-              </div>
-              -->
-            </ng-container>
-          </div>
-        </div>
+        <statistik-component></statistik-component>
       </section>
     </div>
   </section>

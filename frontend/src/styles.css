@@ -7,7 +7,17 @@ body {
   margin: 40px 40px 40px 40px !important;
 }
 
+h1 {
+  margin-bottom: 0;
+}
+
 p {
   margin: 0;
   word-break: break-all;
+}
+
+header {
+  height: 100px;
+  display: flex;
+  align-items: center;
 }

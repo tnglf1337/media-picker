@@ -65,6 +65,7 @@ public class MediathekService {
     return m.getMediaListe().stream()
       .filter(c::isInstance)
       .map(c::cast)
+      .sorted()
       .collect(Collectors.toList());
   }
 

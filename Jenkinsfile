@@ -4,29 +4,34 @@ pipeline {
         PATH = "/usr/local/bin:/opt/homebrew/bin:${env.PATH}"
         DOCKER_CREDENTIALS = credentials('dockerhub-credentials')
     }
-    stages {
-        stage('Build project...') {
-            when {
-                changeset "frontend/**"
-            }
 
+    stages {
+
+        stage('Build frontend project...') {
             steps {
                 dir('frontend') {
-                    sh 'npm install'
-                    sh 'npm run build'
+                    bat 'npm install'
+                    bat 'npm run build'
                 }
             }
         }
 
-        stage('Build Docker Image...') {
-            when {
-                changeset "frontend/**"
-            }
+        stage('Build frontend Docker Image...') {
             steps {
                 dir('frontend') {
-                    sh "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
-                    sh 'docker build -t tneskedev/media-picker:latest .'
-                    sh 'docker push tneskedev/media-picker:latest'
+                    bat "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
+                    bat 'docker build -t tneskedev/media-picker-frontend:latest .'
+                    bat 'docker push tneskedev/media-picker-frontend:latest'
+                }
+            }
+        }
+
+        stage('Build backend Docker Image...') {
+            steps {
+                dir('backend') {
+                    bat "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
+                    bat 'docker build -t tneskedev/media-picker-backend:latest .'
+                    bat 'docker push tneskedev/media-picker-backend:latest'
                 }
             }
         }

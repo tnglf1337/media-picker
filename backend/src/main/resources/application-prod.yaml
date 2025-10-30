@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://medium-database:5432/medium
+    username: "test"
+    password: "1234"
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop # löscht alles bei Neustart, später auf update andern
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+        show_sql: false
+server:
+  port: 9756
+  address: 0.0.0.0
+app:
+  offline:
+    default:
+      username: "off_user"

@@ -28,7 +28,6 @@
     "@angular/forms": "^20.3.0",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
-    "@blaze/atoms": "^13.1.0",
     "@blaze/css": "^12.2.0",
     "blaze-ui": "^0.1.5",
     "rxjs": "~7.8.0",
