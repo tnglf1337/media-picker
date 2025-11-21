@@ -10,8 +10,10 @@ services:
     container_name: mediaverse-backend
     image: tneskedev/mediaverse-backend:latest
     ports:
-      - '4202:81'
-  media-db:
+      - '9756:81'
+    env_file:
+      - backend/.env
+  mediaverse-db:
     container_name: mediaverse-db
     image: postgres:latest
     ports:

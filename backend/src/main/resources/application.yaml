@@ -1,5 +1,5 @@
 spring:
   application:
-    name: media-picker-backend
+    name: mediaverse-backend
   profiles:
     active: dev
