@@ -10,8 +10,8 @@ pipeline {
         stage('Build frontend project...') {
             steps {
                 dir('frontend') {
-                    bat 'npm install'
-                    bat 'npm run build'
+                    sh 'npm install'
+                    sh 'npm run build'
                 }
             }
         }
@@ -19,9 +19,9 @@ pipeline {
         stage('Build frontend Docker Image...') {
             steps {
                 dir('frontend') {
-                    bat "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
-                    bat 'docker build -t tneskedev/mediaverse-frontend:latest .'
-                    bat 'docker push tneskedev/mediaverse-frontend:latest'
+                    sh "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
+                    sh 'docker build -t tneskedev/mediaverse-frontend:latest .'
+                    sh 'docker push tneskedev/mediaverse-frontend:latest'
                 }
             }
         }
@@ -29,9 +29,9 @@ pipeline {
         stage('Build backend Docker Image...') {
             steps {
                 dir('backend') {
-                    bat "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
-                    bat 'docker build -t tneskedev/mediaverse-backend:latest .'
-                    bat 'docker push tneskedev/mediaverse-backend:latest'
+                    sh "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
+                    sh 'docker build -t tneskedev/mediaverse-backend:latest .'
+                    sh 'docker push tneskedev/mediaverse-backend:latest'
                 }
             }
         }
