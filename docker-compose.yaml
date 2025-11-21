@@ -1,7 +1,24 @@
 version: '3.9'
 
 services:
-  media-picker-frontend:
-    image: tneskedev/media-picker:latest
+  mediaverse-frontend:
+    container_name: mediaverse-frontend
+    image: tneskedev/mediaverse-frontend:latest
     ports:
     - '4201:80'
+  mediaverse-backend:
+    container_name: mediaverse-backend
+    image: tneskedev/mediaverse-backend:latest
+    ports:
+      - '4202:81'
+  media-db:
+    container_name: mediaverse-db
+    image: postgres:latest
+    ports:
+      - '5678:5432'
+    volumes:
+      - media-data:/var/lib/postgresql/data
+    env_file:
+      - backend/.env
+volumes:
+  media-data:

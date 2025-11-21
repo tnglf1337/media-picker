@@ -20,8 +20,8 @@ pipeline {
             steps {
                 dir('frontend') {
                     bat "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
-                    bat 'docker build -t tneskedev/media-picker-frontend:latest .'
-                    bat 'docker push tneskedev/media-picker-frontend:latest'
+                    bat 'docker build -t tneskedev/mediaverse-frontend:latest .'
+                    bat 'docker push tneskedev/mediaverse-frontend:latest'
                 }
             }
         }
@@ -30,8 +30,8 @@ pipeline {
             steps {
                 dir('backend') {
                     bat "docker login --username ${env.DOCKER_CREDENTIALS_USR} --password ${env.DOCKER_CREDENTIALS_PSW}"
-                    bat 'docker build -t tneskedev/media-picker-backend:latest .'
-                    bat 'docker push tneskedev/media-picker-backend:latest'
+                    bat 'docker build -t tneskedev/mediaverse-backend:latest .'
+                    bat 'docker push tneskedev/mediaverse-backend:latest'
                 }
             }
         }
