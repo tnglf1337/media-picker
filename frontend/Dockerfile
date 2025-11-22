@@ -6,7 +6,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-RUN npm run build
+RUN npm run build --configuration=prod
 
 FROM nginx:stable
 COPY --from=build /app/dist/media-picker/browser/ /usr/share/nginx/html
