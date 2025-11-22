@@ -6,11 +6,15 @@ services:
     image: tneskedev/mediaverse-frontend:latest
     ports:
     - '4201:80'
+    networks:
+      - mediaverse-network
   mediaverse-backend:
     container_name: mediaverse-backend
     image: tneskedev/mediaverse-backend:latest
     ports:
       - '9756:81'
+    networks:
+      - mediaverse-network
     env_file:
       - backend/.env
   mediaverse-db:
@@ -20,7 +24,12 @@ services:
       - '5678:5432'
     volumes:
       - media-data:/var/lib/postgresql/data
+    networks:
+      - mediaverse-network
     env_file:
       - backend/.env
+networks:
+  mediaverse-network:
+    driver: bridge
 volumes:
   media-data:
