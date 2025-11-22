@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  backendBaseUrl: 'http://mediaverse-backend:81',
+  backendBaseUrl: 'http://localhost:9756',
 };
