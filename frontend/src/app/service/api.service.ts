@@ -10,7 +10,7 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class MediumApiService {
-  BASE_URL = environment.backendBaseUrl
+  BASE_URL = "http://mediaverse-backend:81";
   BASE_URL_ERSTELLEN = this.BASE_URL + "/medium-erstellen"
 
   constructor(private http: HttpClient) { }
