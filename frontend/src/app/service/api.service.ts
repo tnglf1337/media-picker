@@ -4,12 +4,13 @@ import {Observable} from 'rxjs';
 import {Anime, Buch, Film, Manga, Medium, MediumTyp, Podcast, Serie, Videospiel} from '../domain/medium';
 import {Mediathek} from '../domain/mediathek';
 import {MediathekStatistik} from '../home-component/statistik-component/statistik-component';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MediumApiService {
-  BASE_URL = "http://localhost:9756"
+  BASE_URL = environment.backendBaseUrl
   BASE_URL_ERSTELLEN = this.BASE_URL + "/medium-erstellen"
 
   constructor(private http: HttpClient) { }
