@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/medium-erstellen")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "http://mediaverse-frontend:4201"})
 public class MediumErstellenController {
 
   private final MediathekService mediathekService;
